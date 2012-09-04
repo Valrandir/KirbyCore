@@ -27,6 +27,9 @@
     <ClInclude Include="Source\Model\Field.h">
       <Filter>Source\Model</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Model\World.h">
+      <Filter>Source\Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
@@ -42,6 +45,9 @@
       <Filter>Source\Render</Filter>
     </ClCompile>
     <ClCompile Include="Source\Model\Field.cpp">
+      <Filter>Source\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Model\World.cpp">
       <Filter>Source\Model</Filter>
     </ClCompile>
   </ItemGroup>

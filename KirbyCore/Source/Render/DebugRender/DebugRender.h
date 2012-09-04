@@ -4,6 +4,8 @@
 
 using namespace Core::Window;
 
+class Field;
+
 class DebugRender : public IRender
 {
 	WindowGDI* pWindowGDI;
@@ -13,5 +15,8 @@ class DebugRender : public IRender
 	void Activate();
 	unsigned int Refresh();
 	~DebugRender();
+	void RenderWorld(World const * pWorld);
+
+	private:
 	void RenderField(Field const * pField);
 };

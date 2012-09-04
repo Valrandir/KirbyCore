@@ -1,3 +1,4 @@
+#include "../../Model/World.h"
 #include "../../Model/Field.h"
 #include "DebugRender.h"
 
@@ -25,6 +26,12 @@ DebugRender::~DebugRender()
 		delete pWindowGDI;
 		pWindowGDI = NULL;
 	}
+}
+
+void DebugRender::RenderWorld(World const * pWorld)
+{
+	Field const * pField = pWorld->GetField();
+	RenderField(pField);
 }
 
 void DebugRender::RenderField(Field const * pField)
