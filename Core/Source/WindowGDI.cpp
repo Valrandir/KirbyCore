@@ -73,11 +73,12 @@ void WindowGDI::SetupBackBuffer()
 {
 	StackLog;
 	HDC hDC;
+	Try(hBrush_DC_BRUSH = (HBRUSH)GetStockObject(DC_BRUSH));
 	Try(hDC = GetDC(hWnd));
 	Try(hBufferDC = CreateCompatibleDC(hDC));
 	Try(hBufferBitmap = CreateCompatibleBitmap(hDC, width, height));
 	SelectObject(hBufferDC, hBufferBitmap);
-	SelectObject(hBufferDC, GetStockObject(DC_BRUSH));
+	SelectObject(hBufferDC, hBrush_DC_BRUSH);
 	Try(ReleaseDC(hWnd, hDC));
 }
 
@@ -178,7 +179,7 @@ void WindowGDI::FillRect(int x, int y, int width, int height, COLORREF color)
 {
 	RECT rect = {x, y, width, height};
 	SetDCBrushColor(hBufferDC, color);
-	::FillRect(hBufferDC, &rect, (HBRUSH)GetStockObject(DC_BRUSH));
+	::FillRect(hBufferDC, &rect, hBrush_DC_BRUSH);
 }
 
 void WindowGDI::Rectangle(int x, int y, int width, int height, COLORREF color)

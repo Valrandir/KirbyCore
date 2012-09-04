@@ -12,6 +12,7 @@ class __declspec(dllexport) WindowGDI
 	int width, height;
 	HDC hBufferDC;
 	HBITMAP hBufferBitmap;
+	HBRUSH hBrush_DC_BRUSH;
 
 	static WNDCLASSEX RegisterClassEx(HINSTANCE hInstance);
 	static void AdjustWindowRect(int &width, int &height, DWORD style);
