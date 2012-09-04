@@ -20,8 +20,6 @@ class __declspec(dllexport) WindowGDI
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	void SetUserData();
 	void SetupBackBuffer();
-	void ClearBackBuffer(HBRUSH hBrush);
-	void ClearBackBuffer(COLORREF color);
 	void OnPaint() const;
 
 	public:
@@ -31,6 +29,9 @@ class __declspec(dllexport) WindowGDI
 	void Quit() const;
 	int GetWidth() const;
 	int GetHeight() const;
+	void ClearBackBuffer();
+	void ClearBackBuffer(HBRUSH hBrush);
+	void ClearBackBuffer(COLORREF color);
 	void FillRect(int x, int y, int width, int height, COLORREF color);
 	void Rectangle(int x, int y, int width, int height, COLORREF color);
 };

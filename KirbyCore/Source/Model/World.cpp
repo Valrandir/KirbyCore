@@ -15,6 +15,11 @@ World::~World()
 	}
 }
 
+void World::Update()
+{
+	pField->Update();
+}
+
 Field const * World::GetField() const
 {
 	return pField;

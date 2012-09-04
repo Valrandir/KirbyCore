@@ -82,13 +82,6 @@ void WindowGDI::SetupBackBuffer()
 	Try(ReleaseDC(hWnd, hDC));
 }
 
-void WindowGDI::ClearBackBuffer(HBRUSH hBrush)
-{
-	StackLog;
-	RECT rect = {0, 0, width, height};
-	Try(::FillRect(hBufferDC, &rect, hBrush));
-}
-
 void WindowGDI::OnPaint() const
 {
 	StackLog;
@@ -125,7 +118,7 @@ WindowGDI::WindowGDI(LPCTSTR caption, int width, int height) : width(width), hei
 	SetUserData();
 
 	SetupBackBuffer();
-	ClearBackBuffer((HBRUSH)GetSysColorBrush(COLOR_3DFACE));
+	ClearBackBuffer();
 
 	ShowWindow(hWnd, SW_SHOW);
 }
@@ -173,6 +166,28 @@ int WindowGDI::GetWidth() const
 int WindowGDI::GetHeight() const
 {
 	return height;
+}
+
+void WindowGDI::ClearBackBuffer()
+{
+	StackLog;
+	ClearBackBuffer((HBRUSH)GetSysColorBrush(COLOR_3DFACE));
+	InvalidateRect(hWnd, 0, 0);
+}
+
+void WindowGDI::ClearBackBuffer(HBRUSH hBrush)
+{
+	StackLog;
+	RECT rect = {0, 0, width, height};
+	Try(::FillRect(hBufferDC, &rect, hBrush));
+	InvalidateRect(hWnd, 0, 0);
+}
+
+void WindowGDI::ClearBackBuffer(COLORREF color)
+{
+	StackLog;
+	FillRect(0, 0, width, height, color);
+	InvalidateRect(hWnd, 0, 0);
 }
 
 void WindowGDI::FillRect(int x, int y, int width, int height, COLORREF color)

@@ -14,8 +14,8 @@ class TickRate
 
 	public:
 	TickRate();
-	TickRate(unsigned int updatesPerSec, double rate);
-	void Initialise(unsigned int updatesPerSec, double rate);
+	TickRate(unsigned int updatesPerSec, double rate = 1.0);
+	void Initialise(unsigned int updatesPerSec, double rate = 1.0);
 	void Reset();
 	unsigned int TickUpdate();
 

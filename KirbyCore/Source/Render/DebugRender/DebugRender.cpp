@@ -31,24 +31,43 @@ DebugRender::~DebugRender()
 void DebugRender::RenderWorld(World const * pWorld)
 {
 	Field const * pField = pWorld->GetField();
+
+	pWindowGDI->ClearBackBuffer();
 	RenderField(pField);
 }
 
 void DebugRender::RenderField(Field const * pField)
 {
-	pWindowGDI->FillRect(0, 0, 100, 100, RGB(255, 0, 40));
-	pWindowGDI->Rectangle(200, 200, 100, 100, RGB(40, 128, 255));
-
 	int const * gridPtr;
-	int width = pWindowGDI->GetWidth();
-	int height = pWindowGDI->GetHeight();
-	int sqsx = width / pField->GetSizeX();
-	int sqsy = height / pField->GetSizeY();
-	int px, py;
+	int fieldSizeX = pField->GetSizeX();
+	int fieldSizeY = pField->GetSizeY();
+	int squarePixelSizeX = pWindowGDI->GetWidth() / fieldSizeX;
+	int squarePixelSizeY = pWindowGDI->GetHeight() / fieldSizeY;
+	int j, i;
+	int x, y, color;
 
 	gridPtr = pField->GetReadPtr();
+	x = 0;
+	y = 0;
 
-	for(py = 0; py < height; py += sqsy)
-		for(px = 0; px < width; px += sqsx)
-			pWindowGDI->Rectangle(px, py, px + sqsx, py + sqsy, *(gridPtr++));
+	for(j = 0; j < fieldSizeY; ++j)
+	{
+		for(i = 0; i < fieldSizeX; ++i)
+		{
+			color = *gridPtr;
+			if(color)
+				pWindowGDI->FillRect(x, y, x + squarePixelSizeX, y + squarePixelSizeY, color);
+			x += squarePixelSizeX;
+			++gridPtr;
+		}
+		y += squarePixelSizeY;
+	}
+
+	pField->GetFallingInfo(x, y, color);
+	if(color)
+	{
+		x *= squarePixelSizeX;
+		y *= squarePixelSizeY;
+		pWindowGDI->Rectangle(x, y, x + squarePixelSizeX, y + squarePixelSizeY, color);
+	}
 }

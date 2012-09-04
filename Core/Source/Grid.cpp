@@ -19,7 +19,9 @@ void Grid::Create(int sizeX, int sizeY)
 	StackLog;
 	Destroy();
 
-	Try(gridPtr = (int*)malloc(sizeof(int*) * sizeX * sizeY));
+	size_t byteSize = sizeof(int*) * sizeX * sizeY;
+	Try(gridPtr = (int*)malloc(byteSize));
+	memset(gridPtr, 0, byteSize);
 
 	if(gridPtr)
 	{

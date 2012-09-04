@@ -5,7 +5,7 @@ using namespace Core::Time;
 
 TickRate::TickRate()
 {
-	Initialise(60, 1.0L);
+	Initialise(60, 1.0);
 }
 
 TickRate::TickRate(unsigned int updatesPerSec, double rate)

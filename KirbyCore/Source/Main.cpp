@@ -4,7 +4,8 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
-	GameStart();
-	GameStop();
+	GameInitialise();
+	GameLoop();
+	GameShutdown();
 	return 0;
 }

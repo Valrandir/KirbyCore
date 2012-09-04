@@ -11,5 +11,5 @@ void Random::Randomize()
 
 int Random::Rnd(int min, int max)
 {
-	return (rand() % (max - min)) + min;
+	return (rand() % (max - min + 1)) + min;
 }

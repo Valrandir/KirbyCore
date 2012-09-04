@@ -1,3 +1,4 @@
 #pragma once
-void GameStart();
-void GameStop();
+void GameInitialise();
+void GameLoop();
+void GameShutdown();
