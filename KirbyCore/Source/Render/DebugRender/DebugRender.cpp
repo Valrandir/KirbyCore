@@ -63,6 +63,10 @@ void DebugRender::RenderField(Field const * pField)
 		y += squarePixelSizeY;
 	}
 
+	x = fieldSizeX * squarePixelSizeX;
+	y = fieldSizeY * squarePixelSizeY;
+	pWindowGDI->Line(0, y, x, y);
+
 	pField->GetFallingInfo(x, y, color);
 	if(color)
 	{

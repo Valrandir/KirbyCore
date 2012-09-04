@@ -202,3 +202,10 @@ void WindowGDI::Rectangle(int x, int y, int width, int height, COLORREF color)
 	SetDCBrushColor(hBufferDC, color);
 	::Rectangle(hBufferDC, x, y, width, height);
 }
+
+void WindowGDI::Line(int x, int y, int x2, int y2)
+{
+	StackLog;
+	Try(MoveToEx(hBufferDC, x, y, 0));
+	Try(LineTo(hBufferDC, x2 + 1, y2 + 1));
+}

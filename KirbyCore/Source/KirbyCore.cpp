@@ -11,7 +11,7 @@ IRender* g_pIRender = 0;
 
 void GameInitialise()
 {
-	g_pTickRate = new Core::Time::TickRate(60);
+	g_pTickRate = new Core::Time::TickRate(15);
 	g_pWorld = new World();
 	g_pIRender = IRender::Create();
 	g_pIRender->Activate();
@@ -26,9 +26,13 @@ void GameLoop()
 
 	while(isActive)
 	{
-		nTick = g_pTickRate->TickUpdate();
-		for(iTick = 0; iTick < nTick; ++iTick)
+		//nTick = g_pTickRate->TickUpdate();
+		//for(iTick = 0; iTick < nTick; ++iTick)
+		if(GetAsyncKeyState(VK_SPACE))
+		{
 			g_pWorld->Update();
+			Sleep(100);
+		}
 
 		g_pIRender->RenderWorld(g_pWorld);
 
