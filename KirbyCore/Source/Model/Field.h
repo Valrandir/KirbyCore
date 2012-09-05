@@ -1,14 +1,12 @@
 #pragma once
 #include <Core.h>
+#include "FieldPiece.h"
 
 class Field : public Core::Grid
 {
 	int squareWidth;
 	int squareHeight;
-
-	int fallingX;
-	int fallingY;
-	int fallingColor;
+	FieldPiece piece;
 
 	public:
 	Field();
@@ -18,5 +16,5 @@ class Field : public Core::Grid
 	void RandomFill();
 
 	public:
-	void GetFallingInfo(int& x, int& y, int& color) const;
+	void GetFieldItems(FieldItem const **vItem, int* nItem) const;
 };

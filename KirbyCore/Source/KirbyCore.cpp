@@ -26,13 +26,15 @@ void GameLoop()
 
 	while(isActive)
 	{
-		//nTick = g_pTickRate->TickUpdate();
-		//for(iTick = 0; iTick < nTick; ++iTick)
-		if(GetAsyncKeyState(VK_SPACE))
-		{
+		nTick = g_pTickRate->TickUpdate();
+		for(iTick = 0; iTick < nTick; ++iTick)
 			g_pWorld->Update();
-			Sleep(100);
-		}
+
+		//if(GetAsyncKeyState(VK_SPACE))
+		//{
+		//	g_pWorld->Update();
+		//	Sleep(100);
+		//}
 
 		g_pIRender->RenderWorld(g_pWorld);
 

@@ -33,6 +33,12 @@
     <ClInclude Include="Source\Model\BlockMkr.h">
       <Filter>Source\Model</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Model\FieldPiece.h">
+      <Filter>Source\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Model\FieldItem.h">
+      <Filter>Source\Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
@@ -54,6 +60,12 @@
       <Filter>Source\Model</Filter>
     </ClCompile>
     <ClCompile Include="Source\Model\BlockMkr.cpp">
+      <Filter>Source\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Model\FieldPiece.cpp">
+      <Filter>Source\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Model\FieldItem.cpp">
       <Filter>Source\Model</Filter>
     </ClCompile>
   </ItemGroup>

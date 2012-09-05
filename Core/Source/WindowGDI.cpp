@@ -207,5 +207,5 @@ void WindowGDI::Line(int x, int y, int x2, int y2)
 {
 	StackLog;
 	Try(MoveToEx(hBufferDC, x, y, 0));
-	Try(LineTo(hBufferDC, x2 + 1, y2 + 1));
+	Try(LineTo(hBufferDC, x2, y2));
 }

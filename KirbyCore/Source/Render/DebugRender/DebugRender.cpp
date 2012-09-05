@@ -8,7 +8,9 @@ void DebugRender::Create()
 
 void DebugRender::Activate()
 {
-	pWindowGDI = new WindowGDI(TEXT("Kirby Core - Debug Renderer"), 640, 480);
+	int width = 320;
+	int height = 240;
+	pWindowGDI = new WindowGDI(TEXT("Kirby Core - Debug Renderer"), width, height);
 }
 
 unsigned int DebugRender::Refresh()
@@ -47,12 +49,10 @@ void DebugRender::RenderField(Field const * pField)
 	int x, y, color;
 
 	gridPtr = pField->GetReadPtr();
-	x = 0;
-	y = 0;
 
-	for(j = 0; j < fieldSizeY; ++j)
+	for(y= j = 0; j < fieldSizeY; ++j)
 	{
-		for(i = 0; i < fieldSizeX; ++i)
+		for(x = i = 0; i < fieldSizeX; ++i)
 		{
 			color = *gridPtr;
 			if(color)
@@ -65,13 +65,21 @@ void DebugRender::RenderField(Field const * pField)
 
 	x = fieldSizeX * squarePixelSizeX;
 	y = fieldSizeY * squarePixelSizeY;
-	pWindowGDI->Line(0, y, x, y);
+	pWindowGDI->Line(0, y, x + 1, y);
 
-	pField->GetFallingInfo(x, y, color);
-	if(color)
+	FieldItem const * vItem;
+	int nItem;
+	pField->GetFieldItems(&vItem, &nItem);
+	for(i = 0; i < nItem; ++i)
 	{
-		x *= squarePixelSizeX;
-		y *= squarePixelSizeY;
-		pWindowGDI->Rectangle(x, y, x + squarePixelSizeX, y + squarePixelSizeY, color);
+		x = vItem[i].x;
+		y = vItem[i].y;
+		color = vItem[i].color;
+		if(color)
+		{
+			x *= squarePixelSizeX;
+			y *= squarePixelSizeY;
+			pWindowGDI->FillRect(x, y, x + squarePixelSizeX, y + squarePixelSizeY, color);
+		}
 	}
 }

@@ -4,32 +4,30 @@
 
 Field::Field()
 {
-	squareWidth = 3;
-	squareHeight = 50;
+	squareWidth = 10;
+	squareHeight = 20;
 
 	Grid::Create(squareWidth, squareHeight);
 	Set(squareWidth / 2, squareHeight / 2, 0xffffff);
-	//RandomFill();
+	piece.Reset(squareWidth);
 
-	fallingX = 0;
-	fallingY = 0;
-	fallingColor = 0;
+	RandomFill();
 }
 
 void Field::Update()
 {
-	if(!fallingColor)
-	{
-		fallingX = Core::Random::Rnd(0, squareWidth - 1);
-		fallingY = 0;
-		fallingColor = BlockMkr::GetRandomBlock();
-	}
-	else
-	{
-		++fallingY;
-		if(fallingY >= squareHeight)
-			fallingColor = 0;
-	}
+	piece.Fall();
+
+	FieldItem const *vItem;
+	int nItem;
+
+	piece.GetItems(&vItem, &nItem);
+	for(int i = 0; i < nItem; ++i)
+		if(vItem[i].y >= squareHeight)
+		{
+			piece.Reset(squareWidth);
+			break;
+		}
 }
 
 void Field::RandomFill()
@@ -41,9 +39,7 @@ void Field::RandomFill()
 		*ptr = BlockMkr::GetRandomBlock();
 }
 
-void Field::GetFallingInfo(int& x, int& y, int& color) const
+void Field::GetFieldItems(FieldItem const **vItem, int* nItem) const
 {
-	x = fallingX;
-	y = fallingY;
-	color = fallingColor;
+	piece.GetItems(vItem, nItem);
 }

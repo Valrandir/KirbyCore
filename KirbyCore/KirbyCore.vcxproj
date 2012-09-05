@@ -14,6 +14,8 @@
     <ClInclude Include="Source\KirbyCore.h" />
     <ClInclude Include="Source\Model\BlockMkr.h" />
     <ClInclude Include="Source\Model\Field.h" />
+    <ClInclude Include="Source\Model\FieldItem.h" />
+    <ClInclude Include="Source\Model\FieldPiece.h" />
     <ClInclude Include="Source\Model\World.h" />
     <ClInclude Include="Source\Render\DebugRender\DebugRender.h" />
     <ClInclude Include="Source\Render\IRender.h" />
@@ -23,6 +25,8 @@
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Model\BlockMkr.cpp" />
     <ClCompile Include="Source\Model\Field.cpp" />
+    <ClCompile Include="Source\Model\FieldItem.cpp" />
+    <ClCompile Include="Source\Model\FieldPiece.cpp" />
     <ClCompile Include="Source\Model\World.cpp" />
     <ClCompile Include="Source\Render\DebugRender\DebugRender.cpp" />
     <ClCompile Include="Source\Render\IRender.cpp" />
