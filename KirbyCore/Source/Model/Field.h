@@ -14,6 +14,7 @@ class Field : public Core::Grid
 
 	private:
 	void RandomFill();
+	void SetPiece(FieldPiece const * piece);
 
 	public:
 	void GetFieldItems(FieldItem const **vItem, int* nItem) const;

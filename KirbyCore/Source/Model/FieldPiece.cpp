@@ -7,11 +7,21 @@ FieldPiece::FieldPiece()
 	end = vFieldItem + nFieldItem;
 }
 
-void FieldPiece::Fall()
+void FieldPiece::VMove(int y)
 {
 	FieldItem* p;
 	for(p = vFieldItem; p < end; ++p)
-		++(p->y);
+		p->y += y;
+}
+
+void FieldPiece::Fall()
+{
+	VMove(1);
+}
+
+void FieldPiece::FlyUp()
+{
+	VMove(-1);
 }
 
 void FieldPiece::Reset(int fieldSquareWidth)
@@ -28,8 +38,14 @@ void FieldPiece::Reset(int fieldSquareWidth)
 	}
 }
 
-void FieldPiece::GetItems(FieldItem const **vItem, int* nItem) const
+void FieldPiece::GetItems(FieldItem const **begin, FieldItem const **end, int* count) const
 {
-	*vItem = vFieldItem;
-	*nItem = nFieldItem;
+	if(begin)
+		*begin = vFieldItem;
+
+	if(end)
+		*end = vFieldItem + nFieldItem;
+
+	if(count)
+		*count = nFieldItem;
 }
