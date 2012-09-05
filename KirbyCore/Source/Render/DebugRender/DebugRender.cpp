@@ -56,7 +56,7 @@ void DebugRender::RenderField(Field const * pField)
 		{
 			color = *gridPtr;
 			if(color)
-				pWindowGDI->FillRect(x, y, x + squarePixelSizeX, y + squarePixelSizeY, color);
+				pWindowGDI->FillRect(x, y, squarePixelSizeX, squarePixelSizeY, color);
 			x += squarePixelSizeX;
 			++gridPtr;
 		}
@@ -79,7 +79,7 @@ void DebugRender::RenderField(Field const * pField)
 		{
 			x *= squarePixelSizeX;
 			y *= squarePixelSizeY;
-			pWindowGDI->FillRect(x, y, x + squarePixelSizeX, y + squarePixelSizeY, color);
+			pWindowGDI->FillRect(x, y, squarePixelSizeX, squarePixelSizeY, color);
 		}
 	}
 }

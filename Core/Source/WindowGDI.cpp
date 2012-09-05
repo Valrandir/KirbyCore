@@ -192,15 +192,16 @@ void WindowGDI::ClearBackBuffer(COLORREF color)
 
 void WindowGDI::FillRect(int x, int y, int width, int height, COLORREF color)
 {
-	RECT rect = {x, y, width, height};
+	RECT rect = {x, y, x + width, y + height};
 	SetDCBrushColor(hBufferDC, color);
 	::FillRect(hBufferDC, &rect, hBrush_DC_BRUSH);
+	//::Ellipse(hBufferDC, x, y, x + width, y + height);
 }
 
 void WindowGDI::Rectangle(int x, int y, int width, int height, COLORREF color)
 {
 	SetDCBrushColor(hBufferDC, color);
-	::Rectangle(hBufferDC, x, y, width, height);
+	::Rectangle(hBufferDC, x, y, x + width, y + height);
 }
 
 void WindowGDI::Line(int x, int y, int x2, int y2)
