@@ -31,6 +31,9 @@
     <ClCompile Include="Source\Render\DebugRender\DebugRender.cpp" />
     <ClCompile Include="Source\Render\IRender.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Notes.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9E47FDC0-4F80-4459-AB01-368B2CB815C3}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

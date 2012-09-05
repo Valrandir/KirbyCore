@@ -1,9 +1,10 @@
 #include "World.h"
 #include "Field.h"
 
-World::World() : pField(0)
+World::World()
 {
 	pField = new Field();
+	score = 0;
 }
 
 World::~World()
@@ -23,4 +24,9 @@ void World::Update()
 Field const * World::GetField() const
 {
 	return pField;
+}
+
+int World::GetScore() const
+{
+	return score;
 }
