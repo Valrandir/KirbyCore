@@ -19,15 +19,18 @@ void Grid::Create(int sizeX, int sizeY)
 	StackLog;
 	Destroy();
 
-	size_t byteSize = sizeof(int*) * sizeX * sizeY;
-	Try(gridPtr = (int*)malloc(byteSize));
-	memset(gridPtr, 0, byteSize);
+	size = sizeX * sizeY;
+	this->sizeX = sizeX;
+	this->sizeY = sizeY;
+	byteSize = sizeof(int) * sizeX * sizeY;
 
-	if(gridPtr)
-	{
-		this->sizeX = sizeX;
-		this->sizeY = sizeY;
-	}
+	Try(gridPtr = (int*)malloc(byteSize));
+	Clear(0);
+}
+
+void Grid::Clear(int val)
+{
+	memset(gridPtr, val, byteSize);
 }
 
 void Grid::Destroy()
@@ -51,36 +54,42 @@ int Grid::GetSizeY() const
 	return sizeY;
 }
 
-int const * Grid::GetReadPtr() const
+void Grid::GetReadPtr(int const **begin, int const **end, int *count) const
 {
-	return gridPtr;
+	if(begin) *begin = gridPtr;
+	if(end) *end = gridPtr + size;
+	if(count) *count = size;
 }
 
-int const * Grid::GetReadRowPtr(int y) const
+void Grid::GetReadRowPtr(int y, int const **begin, int const **end, int *count) const
 {
 	StackLog;
 
-	if(y >= 0 && y < sizeY)
-		return gridPtr + y * sizeX;
+	if(y < 0 || y >= sizeY)
+		GridFinalErrorM;
 
-	GridFinalErrorM;
-	return 0;
+	if(begin) *begin = gridPtr + y;
+	if(end) *end = gridPtr + y + sizeY;
+	if(count) *count = sizeY;
 }
 
-int * Grid::GetWritePtr()
+void Grid::GetWritePtr(int **begin, int const **end, int *count)
 {
-	return gridPtr;
+	if(begin) *begin = gridPtr;
+	if(end) *end = gridPtr + size;
+	if(count) *count = size;
 }
 
-int * Grid::GetWriteRowPtr(int y)
+void Grid::GetWriteRowPtr(int y, int **begin, int const **end, int *count)
 {
 	StackLog;
 
-	if(y >= 0 && y < sizeY)
-		return gridPtr + y * sizeX;
+	if(y < 0 || y >= sizeY)
+		GridFinalErrorM;
 
-	GridFinalErrorM;
-	return 0;
+	if(begin) *begin = gridPtr + y;
+	if(end) *end = gridPtr + y + sizeY;
+	if(count) *count = sizeY;
 }
 
 int Grid::Get(int x, int y) const

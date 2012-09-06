@@ -33,9 +33,10 @@ void Field::Update()
 
 void Field::RandomFill()
 {
-	int* ptr = Grid::GetWritePtr();
-	int* end = ptr + squareWidth * squareHeight;
+	int* ptr;
+	int const * end;
 
+	GetWritePtr(&ptr, &end, 0);
 	for(; ptr < end; ++ptr)
 		*ptr = BlockMkr::GetRandomBlock();
 }

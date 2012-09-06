@@ -48,7 +48,7 @@ void DebugRender::RenderField(Field const * pField)
 	int j, i;
 	int x, y, color;
 
-	gridPtr = pField->GetReadPtr();
+	pField->GetReadPtr(&gridPtr, 0, 0);
 
 	for(y= j = 0; j < fieldSizeY; ++j)
 	{
