@@ -2,12 +2,12 @@
 #include "StackTrace.h"
 #include "Grid.h"
 
+#define GridFinalErrorM FinalErrorM(TEXT("Invalid Coordinates"))
+
 using namespace Core;
 using namespace Core::StackTrace;
 
-#define GridFinalErrorM FinalErrorM(TEXT("Invalid Coordinates"))
-
-Grid::Grid() : sizeX(0), sizeY(0), gridPtr(0) {}
+Grid::Grid() : gridPtr(0), size(0), sizeX(0), sizeY(0), byteSize(0) {}
 
 Grid::~Grid()
 {
@@ -35,12 +35,14 @@ void Grid::Clear(int val)
 
 void Grid::Destroy()
 {
-	sizeX = 0;
-	sizeY = 0;
 	if(gridPtr)
 	{
 		free(gridPtr);
 		gridPtr = 0;
+		size = 0;
+		sizeX = 0;
+		sizeY = 0;
+		byteSize = 0;
 	}
 }
 
@@ -82,8 +84,6 @@ void Grid::GetWritePtr(int **begin, int const **end, int *count)
 
 void Grid::GetWriteRowPtr(int y, int **begin, int const **end, int *count)
 {
-	StackLog;
-
 	if(y < 0 || y >= sizeY)
 		GridFinalErrorM;
 
@@ -94,21 +94,13 @@ void Grid::GetWriteRowPtr(int y, int **begin, int const **end, int *count)
 
 int Grid::Get(int x, int y) const
 {
-	StackLog;
-
 	if(x >= 0 && x < sizeX && y >= 0 && y < sizeY)
 		return *(gridPtr + y * sizeX + x);
-
-	GridFinalErrorM;
 	return 0;
 }
 
 void Grid::Set(int x, int y, int value)
 {
-	StackLog;
-
 	if(x >= 0 && x < sizeX && y >= 0 && y < sizeY)
 		*(gridPtr + y * sizeX + x) = value;
-	else
-		GridFinalErrorM;
 }

@@ -13,6 +13,9 @@
     <Filter Include="Source\Model">
       <UniqueIdentifier>{c1d3b77f-d528-4a9d-8e62-c1cfd238cd55}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Model\Polyomino">
+      <UniqueIdentifier>{4ce801fa-589e-461d-8551-748cd962b90c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\KirbyCore.h">
@@ -38,6 +41,9 @@
     </ClInclude>
     <ClInclude Include="Source\Model\FieldItem.h">
       <Filter>Source\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Model\Polyomino\Solver.h">
+      <Filter>Source\Model\Polyomino</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="Source\Model\FieldItem.cpp">
       <Filter>Source\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Model\Polyomino\Solver.cpp">
+      <Filter>Source\Model\Polyomino</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
