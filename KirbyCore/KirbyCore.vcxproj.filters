@@ -42,7 +42,7 @@
     <ClInclude Include="Source\Model\FieldItem.h">
       <Filter>Source\Model</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Model\Polyomino\Solver.h">
+    <ClInclude Include="Source\Model\Polyomino\Polyomino.h">
       <Filter>Source\Model\Polyomino</Filter>
     </ClInclude>
   </ItemGroup>
@@ -74,7 +74,7 @@
     <ClCompile Include="Source\Model\FieldItem.cpp">
       <Filter>Source\Model</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Model\Polyomino\Solver.cpp">
+    <ClCompile Include="Source\Model\Polyomino\Polyomino.cpp">
       <Filter>Source\Model\Polyomino</Filter>
     </ClCompile>
   </ItemGroup>

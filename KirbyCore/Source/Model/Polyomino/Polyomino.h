@@ -2,7 +2,7 @@
 #include <Core.h>
 #include <vector>
 
-class Solver
+class Polyomino
 {
 	struct Item{int x, y;};
 	typedef std::vector<Item> VecItem;
@@ -14,7 +14,7 @@ class Solver
 	void VecToDest(VecItem const *vecItem, int total);
 
 	public:
-	Solver();
-	~Solver();
-	Core::Grid const* Solve(Core::Grid const* srcGrid);
+	Polyomino();
+	~Polyomino();
+	Core::Grid const* Detect(Core::Grid const* srcGrid);
 };

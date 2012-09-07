@@ -1,12 +1,12 @@
 #include <vector>
-#include "Solver.h"
+#include "Polyomino.h"
 
 using namespace Core;
 using namespace std;
 
-const int Solver::ring[8] = {-1, 0, 1, -1, 1, 1, -1, 1};
+const int Polyomino::ring[8] = {-1, 0, 1, -1, 1, 1, -1, 1};
 
-int Solver::Iterate(VecItem *vecItem, int id)
+int Polyomino::Iterate(VecItem *vecItem, int id)
 {
 	Item item;
 	int i, sum = 1;
@@ -28,7 +28,7 @@ int Solver::Iterate(VecItem *vecItem, int id)
 	return sum;
 }
 
-void Solver::VecToDest(VecItem const *vecItem, int total)
+void Polyomino::VecToDest(VecItem const *vecItem, int total)
 {
 	auto it = vecItem->begin();
 	auto end = vecItem->end();
@@ -39,15 +39,15 @@ void Solver::VecToDest(VecItem const *vecItem, int total)
 	}
 }
 
-Solver::Solver() : destGrid(0){}
+Polyomino::Polyomino() : destGrid(0){}
 
-Solver::~Solver()
+Polyomino::~Polyomino()
 {
 	if(destGrid)
 		delete destGrid;
 }
 
-Grid const* Solver::Solve(Grid const* srcGrid)
+Grid const* Polyomino::Detect(Grid const* srcGrid)
 {
 	VecItem vec;
 	Item item = {0};
