@@ -18,9 +18,7 @@ class Grid
 	int GetSizeX() const;
 	int GetSizeY() const;
 	void GetReadPtr(int const **begin, int const **end, int *count) const;
-	void GetReadRowPtr(int y, int const **begin, int const **end, int *count) const;
-	void GetWritePtr(int **begin, int const **end, int *count);
-	void GetWriteRowPtr(int y, int **begin, int const **end, int *count);
+	void GetWritePtr(int **begin, int **end, int *count);
 	int Get(int x, int y) const;
 	void Set(int x, int y, int value);
 };

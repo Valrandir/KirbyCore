@@ -8,8 +8,8 @@ void DebugRender::Create()
 
 void DebugRender::Activate()
 {
-	int width = 320;
-	int height = 240;
+	int width = 256;
+	int height = 256;
 	pWindowGDI = new WindowGDI(TEXT("Kirby Core - Debug Renderer"), width, height);
 }
 
@@ -50,7 +50,7 @@ void DebugRender::RenderField(Field const * pField)
 
 	pField->GetReadPtr(&gridPtr, 0, 0);
 
-	for(y= j = 0; j < fieldSizeY; ++j)
+	for(y = j = 0; j < fieldSizeY; ++j)
 	{
 		for(x = i = 0; i < fieldSizeX; ++i)
 		{

@@ -55,12 +55,12 @@ Polyomino::~Polyomino()
 		delete destGrid;
 }
 
-Grid const* Polyomino::Detect(Grid const* srcGrid)
+int Polyomino::Detect(Grid const* srcGrid, Grid const** outGrid, int threshold)
 {
 	int const *src, *dest;
 	int sizeX, sizeY;
 	Item item = {0};
-	int total;
+	int count, total = 0;
 
 	if(!destGrid)
 		Initialize(srcGrid);
@@ -76,10 +76,14 @@ Grid const* Polyomino::Detect(Grid const* srcGrid)
 			if(*src && !*dest)
 			{
 				vec.push_back(item);
-				total = Iterate(&vec, *src);
-				VecToDest(&vec, total);
+				count = Iterate(&vec, *src);
+				VecToDest(&vec, count);
 				vec.clear();
+				if(count >= threshold)
+					++total;
 			}
 
-	return destGrid;
+	*outGrid = destGrid;
+
+	return total;
 }

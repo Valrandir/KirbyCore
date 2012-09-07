@@ -4,8 +4,8 @@
 
 Field::Field()
 {
-	squareWidth = 10;
-	squareHeight = 20;
+	squareWidth = 8;
+	squareHeight = 8;
 
 	Grid::Create(squareWidth, squareHeight);
 	piece.Reset(squareWidth);
@@ -13,39 +13,85 @@ Field::Field()
 
 void Field::Update()
 {
-	FieldItem const *ptr, *end;
+	int threshold = 4;
+	Grid const* outGrid;
 
-	piece.GetItems(&ptr, &end, 0);
 	piece.Fall();
 
-	for(; ptr < end; ++ptr)
-		if(ptr->y >= squareHeight || Get(ptr->x, ptr->y))
+	if(FindImpact())
+	{
+		piece.FlyUp();
+		SetPiece(&piece);
+		piece.Reset(squareWidth);
+		while(polyomino.Detect(this, &outGrid, threshold))
 		{
-			piece.FlyUp();
-			SetPiece(&piece);
-			piece.Reset(squareWidth);
-			break;
+			DestroyItems(outGrid, threshold);
+			Collapse();
 		}
+	}
 }
 
 void Field::RandomFill()
 {
 	int* ptr;
-	int const * end;
+	int* end;
 
 	GetWritePtr(&ptr, &end, 0);
 	for(; ptr < end; ++ptr)
 		*ptr = BlockMkr::GetRandomBlock();
 }
 
-void Field::SetPiece(FieldPiece const * piece)
+bool Field::FindImpact()
 {
 	FieldItem const *ptr, *end;
+	piece.GetItems(&ptr, &end, 0);
 
+	for(; ptr < end; ++ptr)
+		if(ptr->y >= squareHeight || Get(ptr->x, ptr->y))
+			return true;
+
+	return false;
+}
+
+void Field::SetPiece(FieldPiece const* piece)
+{
+	FieldItem const *ptr, *end;
 	piece->GetItems(&ptr, &end, 0);
 
 	for(; ptr < end; ++ptr)
 		Set(ptr->x, ptr->y, ptr->color);
+}
+
+void Field::DestroyItems(Core::Grid const* outGrid, int threshold)
+{
+	int *src, n, i;
+	int const* out;
+
+	GetWritePtr(&src, 0, &n);
+	outGrid->GetReadPtr(&out, 0, 0);
+
+	for(i = 0; i < n; ++i, ++src, ++out)
+		if(*out >= threshold)
+			*src = DeletedFlag;
+}
+
+void Field::Collapse()
+{
+	int x, y, sx, sy;
+	int* ptr;
+	int i;
+
+	GetSize(sx, sy);
+	GetWritePtr(0, &ptr, 0);
+
+	for(y = sy - 1; y >= 0; --y)
+		for(x = sx - 1; x >= 0; --x)
+		{
+			--ptr;
+			while(*ptr == DeletedFlag)
+				for(i = y; i >= 0; --i)
+					Set(x, i, Get(x, i - 1));
+		}
 }
 
 void Field::GetFieldItems(FieldItem const **vItem, int* nItem) const

@@ -18,5 +18,5 @@ class Polyomino
 	public:
 	Polyomino();
 	~Polyomino();
-	Core::Grid const* Detect(Core::Grid const* srcGrid);
+	int Detect(Core::Grid const* srcGrid, Core::Grid const** outGrid, int threshold);
 };

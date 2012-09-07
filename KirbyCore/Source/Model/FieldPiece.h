@@ -3,7 +3,7 @@
 
 class FieldPiece
 {
-	static const int nFieldItem = 3;
+	static const int nFieldItem = 1;
 	FieldItem vFieldItem[nFieldItem];
 	FieldItem* end;
 

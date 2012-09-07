@@ -69,33 +69,11 @@ void Grid::GetReadPtr(int const **begin, int const **end, int *count) const
 	if(count) *count = size;
 }
 
-void Grid::GetReadRowPtr(int y, int const **begin, int const **end, int *count) const
-{
-	StackLog;
-
-	if(y < 0 || y >= sizeY)
-		GridFinalErrorM;
-
-	if(begin) *begin = gridPtr + y;
-	if(end) *end = gridPtr + y + sizeY;
-	if(count) *count = sizeY;
-}
-
-void Grid::GetWritePtr(int **begin, int const **end, int *count)
+void Grid::GetWritePtr(int **begin, int **end, int *count)
 {
 	if(begin) *begin = gridPtr;
 	if(end) *end = gridPtr + size;
 	if(count) *count = size;
-}
-
-void Grid::GetWriteRowPtr(int y, int **begin, int const **end, int *count)
-{
-	if(y < 0 || y >= sizeY)
-		GridFinalErrorM;
-
-	if(begin) *begin = gridPtr + y;
-	if(end) *end = gridPtr + y + sizeY;
-	if(count) *count = sizeY;
 }
 
 int Grid::Get(int x, int y) const
