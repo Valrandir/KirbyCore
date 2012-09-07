@@ -6,6 +6,14 @@ using namespace std;
 
 const int Polyomino::ring[8] = {-1, 0, 1, -1, 1, 1, -1, 1};
 
+void Polyomino::Initialize(Core::Grid const* srcGrid)
+{
+	vec.reserve(16);
+	this->srcGrid = srcGrid;
+	destGrid = new Grid();
+	destGrid->Create(srcGrid->GetSizeX(), srcGrid->GetSizeY());
+}
+
 int Polyomino::Iterate(VecItem *vecItem, int id)
 {
 	Item item;
@@ -49,18 +57,15 @@ Polyomino::~Polyomino()
 
 Grid const* Polyomino::Detect(Grid const* srcGrid)
 {
-	VecItem vec;
-	Item item = {0};
-	int const *src;
-	int const *dest;
+	int const *src, *dest;
 	int sizeX, sizeY;
+	Item item = {0};
 	int total;
 
-	vec.reserve(16);
-
-	this->srcGrid = srcGrid;
-	destGrid = new Grid();
-	destGrid->Create(srcGrid->GetSizeX(), srcGrid->GetSizeY());
+	if(!destGrid)
+		Initialize(srcGrid);
+	else
+		destGrid->Clear(0);
 
 	srcGrid->GetReadPtr(&src, 0, 0);
 	destGrid->GetReadPtr(&dest, 0, 0);
