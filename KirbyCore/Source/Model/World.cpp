@@ -18,7 +18,9 @@ World::~World()
 
 void World::Update()
 {
-	pField->Update();
+	int updateScore;
+	pField->Update(0, &updateScore);
+	score += updateScore;
 }
 
 Field const * World::GetField() const

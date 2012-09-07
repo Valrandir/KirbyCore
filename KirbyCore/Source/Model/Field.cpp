@@ -11,9 +11,11 @@ Field::Field()
 	piece.Reset(squareWidth);
 }
 
-void Field::Update()
+void Field::Update(int* pPolyTotal, int* pScoreTotal)
 {
 	int threshold = 4;
+	int polyCount, polyTotal = 0;
+	int scoreTotal = 0;
 	Grid const* outGrid;
 
 	piece.Fall();
@@ -23,12 +25,16 @@ void Field::Update()
 		piece.FlyUp();
 		SetPiece(&piece);
 		piece.Reset(squareWidth);
-		while(polyomino.Detect(this, &outGrid, threshold))
+		while(polyCount = polyomino.Detect(this, &outGrid, threshold))
 		{
-			DestroyItems(outGrid, threshold);
+			polyTotal += polyCount;
+			scoreTotal += DestroyItems(outGrid, threshold);
 			Collapse();
 		}
 	}
+
+	if(pPolyTotal) *pPolyTotal = polyTotal;
+	if(pScoreTotal) *pScoreTotal = scoreTotal;
 }
 
 void Field::RandomFill()
@@ -62,17 +68,23 @@ void Field::SetPiece(FieldPiece const* piece)
 		Set(ptr->x, ptr->y, ptr->color);
 }
 
-void Field::DestroyItems(Core::Grid const* outGrid, int threshold)
+int Field::DestroyItems(Core::Grid const* outGrid, int threshold)
 {
 	int *src, n, i;
 	int const* out;
+	int total = 0;
 
 	GetWritePtr(&src, 0, &n);
 	outGrid->GetReadPtr(&out, 0, 0);
 
 	for(i = 0; i < n; ++i, ++src, ++out)
 		if(*out >= threshold)
+		{
 			*src = DeletedFlag;
+			++total;
+		}
+
+	return total;
 }
 
 void Field::Collapse()

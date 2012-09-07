@@ -18,5 +18,6 @@ class DebugRender : public IRender
 	void RenderWorld(World const * pWorld);
 
 	private:
+	void RenderScore(int score);
 	void RenderField(Field const * pField);
 };

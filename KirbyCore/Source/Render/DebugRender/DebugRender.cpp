@@ -36,6 +36,17 @@ void DebugRender::RenderWorld(World const * pWorld)
 
 	pWindowGDI->ClearBackBuffer();
 	RenderField(pField);
+	RenderScore(pWorld->GetScore());
+}
+
+#include <tchar.h>
+void DebugRender::RenderScore(int score)
+{
+	int len;
+	TCHAR dest[128];
+
+	len = _stprintf_s(dest, 128, TEXT("Score: %d"), score);
+	pWindowGDI->Text(dest, len, 0, 0);
 }
 
 void DebugRender::RenderField(Field const * pField)

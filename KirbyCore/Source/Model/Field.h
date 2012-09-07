@@ -13,13 +13,13 @@ class Field : public Core::Grid
 
 	public:
 	Field();
-	void Update();
+	void Update(int* pPolyTotal, int* pScoreTotal);
 
 	private:
 	void RandomFill();
 	bool FindImpact();
 	void SetPiece(FieldPiece const* piece);
-	void DestroyItems(Core::Grid const* outGrid, int threshold);
+	int DestroyItems(Core::Grid const* outGrid, int threshold);
 	void Collapse();
 
 	public:
