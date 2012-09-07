@@ -4,14 +4,12 @@
 using namespace Core;
 using namespace std;
 
-//const int Solver::ring[8] = {0, -1, -1, 0, 1, 0, 0, 1};
 const int Solver::ring[8] = {-1, 0, 1, -1, 1, 1, -1, 1};
 
 int Solver::Iterate(VecItem *vecItem, int id)
 {
 	Item item;
-	int count = 1;
-	int i;
+	int i, sum = 1;
 
 	item = vecItem->back();
 	destGrid->Set(item.x, item.y, 1);
@@ -23,11 +21,11 @@ int Solver::Iterate(VecItem *vecItem, int id)
 		if(srcGrid->Get(item.x, item.y) == id && !destGrid->Get(item.x, item.y))
 		{
 			vecItem->push_back(item);
-			count += Iterate(vecItem, id);
+			sum += Iterate(vecItem, id);
 		}
 	}
 
-	return count;
+	return sum;
 }
 
 void Solver::VecToDest(VecItem const *vecItem, int total)
@@ -41,20 +39,42 @@ void Solver::VecToDest(VecItem const *vecItem, int total)
 	}
 }
 
+Solver::Solver() : destGrid(0){}
+
+Solver::~Solver()
+{
+	if(destGrid)
+		delete destGrid;
+}
+
 Grid const* Solver::Solve(Grid const* srcGrid)
 {
 	VecItem vec;
 	Item item = {0};
+	int const *src;
+	int const *dest;
+	int sizeX, sizeY;
 	int total;
 
-	this->srcGrid = srcGrid;
+	vec.reserve(16);
 
+	this->srcGrid = srcGrid;
 	destGrid = new Grid();
 	destGrid->Create(srcGrid->GetSizeX(), srcGrid->GetSizeY());
 
-	vec.push_back(item);
-	total = Iterate(&vec, 1);
-	VecToDest(&vec, total);
+	srcGrid->GetReadPtr(&src, 0, 0);
+	destGrid->GetReadPtr(&dest, 0, 0);
+	destGrid->GetSize(sizeX, sizeY);
 
-	return 0;
+	for(item.y = 0; item.y < sizeY; ++item.y)
+		for(item.x = 0; item.x < sizeX; ++item.x, ++src, ++dest)
+			if(*src && !*dest)
+			{
+				vec.push_back(item);
+				total = Iterate(&vec, *src);
+				VecToDest(&vec, total);
+				vec.clear();
+			}
+
+	return destGrid;
 }

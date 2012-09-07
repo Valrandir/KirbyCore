@@ -46,6 +46,12 @@ void Grid::Destroy()
 	}
 }
 
+void Grid::GetSize(int& x, int& y) const
+{
+	x = sizeX;
+	y = sizeY;
+}
+
 int Grid::GetSizeX() const
 {
 	return sizeX;

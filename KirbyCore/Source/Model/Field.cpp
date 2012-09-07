@@ -2,28 +2,13 @@
 #include "Field.h"
 #include "BlockMkr.h"
 
-#include "Polyomino/Solver.h"
-
 Field::Field()
 {
 	squareWidth = 10;
 	squareHeight = 20;
 
 	Grid::Create(squareWidth, squareHeight);
-	//Set(squareWidth / 2, squareHeight / 2, 0xffffff);
 	piece.Reset(squareWidth);
-
-	//Test Solver Here
-	Set(0, 0, 1); // 1 1 1 1
-	Set(1, 0, 1); //     1
-	Set(2, 0, 1); //     1
-	Set(3, 0, 1);
-	Set(2, 1, 1);
-	Set(2, 2, 1);
-
-	Solver s;
-	s.Solve(this);
-	//RandomFill();
 }
 
 void Field::Update()

@@ -14,6 +14,7 @@ class Grid
 	void Create(int sizeX, int sizeY);
 	void Clear(int val);
 	void Destroy();
+	void GetSize(int& x, int& y) const;
 	int GetSizeX() const;
 	int GetSizeY() const;
 	void GetReadPtr(int const **begin, int const **end, int *count) const;
