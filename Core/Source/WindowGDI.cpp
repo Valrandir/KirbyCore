@@ -210,3 +210,8 @@ void WindowGDI::Line(int x, int y, int x2, int y2)
 	Try(MoveToEx(hBufferDC, x, y, 0));
 	Try(LineTo(hBufferDC, x2, y2));
 }
+
+void WindowGDI::Text(LPCTSTR Text, int len, int x, int y)
+{
+	TextOut(hBufferDC, x, y, Text, len);
+}

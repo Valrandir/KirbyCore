@@ -35,6 +35,7 @@ class __declspec(dllexport) WindowGDI
 	void FillRect(int x, int y, int width, int height, COLORREF color);
 	void Rectangle(int x, int y, int width, int height, COLORREF color);
 	void Line(int x, int y, int x2, int y2);
+	void Text(LPCTSTR Text, int len, int x, int y);
 };
 
 } }
