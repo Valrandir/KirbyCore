@@ -1,4 +1,24 @@
 #pragma once
-void GameInitialise();
-void GameLoop();
-void GameShutdown();
+#include <Core.h>
+#include "KirbyCore.h"
+#include "Model/World.h"
+#include "Input/IInput.h"
+#include "Render/IRender.h"
+
+class KirbyCore
+{
+	Core::Time::TickRate* _pTickRate;
+	World* _pWorld;
+	IInput* _pIInput;
+	IRender* _pIRender;
+
+	public:
+	KirbyCore();
+	~KirbyCore();
+	void Initialise();
+	void UpdateLoop();
+	void Shutdown();
+
+	private:
+	void ApplyInput();
+};

@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Input\DebugInput\DebugInput.h" />
+    <ClInclude Include="Source\Input\IInput.h" />
     <ClInclude Include="Source\KirbyCore.h" />
     <ClInclude Include="Source\Model\BlockMkr.h" />
     <ClInclude Include="Source\Model\Field.h" />
@@ -22,6 +24,8 @@
     <ClInclude Include="Source\Render\IRender.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Input\DebugInput\DebugInput.cpp" />
+    <ClCompile Include="Source\Input\IInput.cpp" />
     <ClCompile Include="Source\KirbyCore.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Model\BlockMkr.cpp" />

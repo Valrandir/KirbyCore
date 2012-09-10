@@ -4,8 +4,11 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
-	GameInitialise();
-	GameLoop();
-	GameShutdown();
+	KirbyCore kirby;
+
+	kirby.Initialise();
+	kirby.UpdateLoop();
+	kirby.Shutdown();
+
 	return 0;
 }

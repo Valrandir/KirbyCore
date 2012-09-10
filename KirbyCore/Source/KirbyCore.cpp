@@ -1,52 +1,67 @@
-#include <Core.h>
 #include "KirbyCore.h"
-#include "Model/World.h"
-#include "Render/IRender.h"
 
 #define DeletePtr(p)if(p){delete (p); (p) = 0;}
 
-Core::Time::TickRate* g_pTickRate = 0;
-World* g_pWorld = 0;
-IRender* g_pIRender = 0;
-
-void GameInitialise()
+KirbyCore::KirbyCore() : _pTickRate(0), _pWorld(0), _pIInput(0), _pIRender(0)
 {
-	g_pTickRate = new Core::Time::TickRate(15);
-	g_pWorld = new World();
-	g_pIRender = IRender::Create();
-	g_pIRender->Activate();
 }
 
-void GameLoop()
+KirbyCore::~KirbyCore()
+{
+	Shutdown();
+}
+
+void KirbyCore::Initialise()
+{
+	_pTickRate = new Core::Time::TickRate(15);
+	_pWorld = new World();
+	_pIInput = IInput::Create();
+	_pIRender = IRender::Create();
+	_pIRender->Activate();
+}
+
+void KirbyCore::UpdateLoop()
 {
 	unsigned int nTick, iTick;
 	unsigned int isActive = 1;
 
-	g_pTickRate->Reset();
+	_pTickRate->Reset();
 
 	while(isActive)
 	{
-		nTick = g_pTickRate->TickUpdate();
+		nTick = _pTickRate->TickUpdate();
 		for(iTick = 0; iTick < nTick; ++iTick)
-			g_pWorld->Update();
+			_pWorld->Update();
 
 		//if(GetAsyncKeyState(VK_SPACE))
 		//{
-		//	g_pWorld->Update();
+		//	_pWorld->Update();
 		//	Sleep(100);
 		//}
 
-		g_pIRender->RenderWorld(g_pWorld);
+		_pIRender->RenderWorld(_pWorld);
 
-		isActive = g_pIRender->Refresh();
+		isActive = _pIRender->Refresh();
 
 		Sleep(1);
 	}
 }
 
-void GameShutdown()
+void KirbyCore::Shutdown()
 {
-	DeletePtr(g_pIRender);
-	DeletePtr(g_pWorld);
-	DeletePtr(g_pTickRate);
+	DeletePtr(_pIRender);
+	DeletePtr(_pIInput);
+	DeletePtr(_pWorld);
+	DeletePtr(_pTickRate);
+}
+
+void KirbyCore::ApplyInput()
+{
+	_pIInput->Read(0);
+
+	//Check State First
+
+	//Then check input and do stuff
+	//if(_pIInput->Peek(CmdMoveLeft));
+	//if(_pIInput->Peek(CmdMoveRight));
 }

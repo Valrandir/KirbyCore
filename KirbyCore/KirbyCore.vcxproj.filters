@@ -16,6 +16,12 @@
     <Filter Include="Source\Model\Polyomino">
       <UniqueIdentifier>{4ce801fa-589e-461d-8551-748cd962b90c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Input">
+      <UniqueIdentifier>{111ea3f2-d545-4a3f-b6e4-be1b0dafe9a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Input\DebugInput">
+      <UniqueIdentifier>{ea015d15-3dd3-4571-8a77-b68d1a961930}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\KirbyCore.h">
@@ -44,6 +50,12 @@
     </ClInclude>
     <ClInclude Include="Source\Model\Polyomino\Polyomino.h">
       <Filter>Source\Model\Polyomino</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Input\IInput.h">
+      <Filter>Source\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Input\DebugInput\DebugInput.h">
+      <Filter>Source\Input\DebugInput</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +88,12 @@
     </ClCompile>
     <ClCompile Include="Source\Model\Polyomino\Polyomino.cpp">
       <Filter>Source\Model\Polyomino</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Input\DebugInput\DebugInput.cpp">
+      <Filter>Source\Input\DebugInput</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Input\IInput.cpp">
+      <Filter>Source\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
