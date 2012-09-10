@@ -2,27 +2,25 @@
 #include "FieldPiece.h"
 #include "BlockMkr.h"
 
-FieldPiece::FieldPiece()
+FieldPiece::FieldPiece() : end(vFieldItem + nFieldItem)
+{}
+
+void FieldPiece::HMove(int x)
 {
-	end = vFieldItem + nFieldItem;
+	FieldItem* p = vFieldItem;
+	while(p < end) (p++)->x += x;
 }
 
 void FieldPiece::VMove(int y)
 {
-	FieldItem* p;
-	for(p = vFieldItem; p < end; ++p)
-		p->y += y;
+	FieldItem* p = vFieldItem;
+	while(p < end) (p++)->y += y;
 }
 
-void FieldPiece::Fall()
-{
-	VMove(1);
-}
-
-void FieldPiece::FlyUp()
-{
-	VMove(-1);
-}
+void FieldPiece::MoveLeft(){HMove(-1);}
+void FieldPiece::MoveRight(){HMove(1);}
+void FieldPiece::Fall(){VMove(1);}
+void FieldPiece::FlyUp(){VMove(-1);}
 
 void FieldPiece::Reset(int fieldSquareWidth)
 {

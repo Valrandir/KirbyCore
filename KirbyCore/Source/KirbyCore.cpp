@@ -13,7 +13,7 @@ KirbyCore::~KirbyCore()
 
 void KirbyCore::Initialise()
 {
-	_pTickRate = new Core::Time::TickRate(15);
+	_pTickRate = new Core::Time::TickRate(60);
 	_pWorld = new World();
 	_pIInput = IInput::Create();
 	_pIRender = IRender::Create();
@@ -31,7 +31,10 @@ void KirbyCore::UpdateLoop()
 	{
 		nTick = _pTickRate->TickUpdate();
 		for(iTick = 0; iTick < nTick; ++iTick)
+		{
+			ApplyInput();
 			_pWorld->Update();
+		}
 
 		//if(GetAsyncKeyState(VK_SPACE))
 		//{
@@ -59,9 +62,9 @@ void KirbyCore::ApplyInput()
 {
 	_pIInput->Read(0);
 
-	//Check State First
+	if(_pIInput->Peek(CmdMoveLeft))
+		_pWorld->CmdMoveLeft();
 
-	//Then check input and do stuff
-	//if(_pIInput->Peek(CmdMoveLeft));
-	//if(_pIInput->Peek(CmdMoveRight));
+	if(_pIInput->Peek(CmdMoveRight))
+		_pWorld->CmdMoveRight();
 }

@@ -1,7 +1,7 @@
 #include "World.h"
 #include "Field.h"
 
-World::World()
+World::World() : state(InGame)
 {
 	pField = new Field();
 	score = 0;
@@ -16,11 +16,22 @@ World::~World()
 	}
 }
 
+void World::CmdMoveLeft()
+{
+	if(state == InGame)
+		pField->PieceLeft();
+}
+
+void World::CmdMoveRight()
+{
+	if(state == InGame)
+		pField->PieceRight();
+}
+
 void World::Update()
 {
-	int updateScore;
-	pField->Update(0, &updateScore);
-	score += updateScore;
+	pField->Update();
+	score = pField->GetScoreTotal();
 }
 
 Field const * World::GetField() const

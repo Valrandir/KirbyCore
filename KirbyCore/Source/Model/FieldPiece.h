@@ -3,17 +3,20 @@
 
 class FieldPiece
 {
-	static const int nFieldItem = 1;
+	static const int nFieldItem = 2;
 	FieldItem vFieldItem[nFieldItem];
-	FieldItem* end;
+	FieldItem const * const end;
 
 	public:
 	FieldPiece();
 
 	private:
+	void HMove(int x);
 	void VMove(int y);
 
 	public:
+	void MoveLeft();
+	void MoveRight();
 	void Fall();
 	void FlyUp();
 	void Reset(int fieldSquareWidth);

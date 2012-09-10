@@ -2,39 +2,52 @@
 #include "Field.h"
 #include "BlockMkr.h"
 
-Field::Field()
+Field::Field() : polyTotal(0), scoreTotal(0)
 {
 	squareWidth = 8;
 	squareHeight = 8;
+	threshold = 4;
+
+	fallCount = 0;
+	fallSpeed = 30;
 
 	Grid::Create(squareWidth, squareHeight);
 	piece.Reset(squareWidth);
 }
 
-void Field::Update(int* pPolyTotal, int* pScoreTotal)
+void Field::PieceLeft()
 {
-	int threshold = 4;
-	int polyCount, polyTotal = 0;
-	int scoreTotal = 0;
-	Grid const* outGrid;
+	piece.MoveLeft();
+	if(FindImpact())
+		piece.MoveRight();
+}
+
+void Field::PieceRight()
+{
+	piece.MoveRight();
+	if(FindImpact())
+		piece.MoveLeft();
+}
+
+void Field::PieceRotate()
+{
+}
+
+void Field::Update()
+{
+	++fallCount;
+	if(fallCount < fallSpeed)
+		return;
+
+	fallCount = 0;
 
 	piece.Fall();
 
 	if(FindImpact())
 	{
 		piece.FlyUp();
-		SetPiece(&piece);
-		piece.Reset(squareWidth);
-		while(polyCount = polyomino.Detect(this, &outGrid, threshold))
-		{
-			polyTotal += polyCount;
-			scoreTotal += DestroyItems(outGrid, threshold);
-			Collapse();
-		}
+		Cycle();
 	}
-
-	if(pPolyTotal) *pPolyTotal = polyTotal;
-	if(pScoreTotal) *pScoreTotal = scoreTotal;
 }
 
 void Field::RandomFill()
@@ -47,13 +60,29 @@ void Field::RandomFill()
 		*ptr = BlockMkr::GetRandomBlock();
 }
 
+void Field::Cycle()
+{
+	int polyCount;
+	Grid const* outGrid;
+
+	SetPiece(&piece);
+	piece.Reset(squareWidth);
+
+	while(polyCount = polyomino.Detect(this, &outGrid, threshold))
+	{
+		polyTotal += polyCount;
+		scoreTotal += DestroyItems(outGrid, threshold);
+		Collapse();
+	}
+}
+
 bool Field::FindImpact()
 {
 	FieldItem const *ptr, *end;
 	piece.GetItems(&ptr, &end, 0);
 
 	for(; ptr < end; ++ptr)
-		if(ptr->y >= squareHeight || Get(ptr->x, ptr->y))
+		if(ptr->x < 0 || ptr->x >= squareWidth || ptr->y >= squareHeight || Get(ptr->x, ptr->y))
 			return true;
 
 	return false;
@@ -109,4 +138,14 @@ void Field::Collapse()
 void Field::GetFieldItems(FieldItem const **vItem, int* nItem) const
 {
 	piece.GetItems(vItem, 0, nItem);
+}
+
+int Field::GetPolyTotal() const
+{
+	return polyTotal;
+}
+
+int Field::GetScoreTotal() const
+{
+	return scoreTotal;
 }
