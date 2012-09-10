@@ -12,14 +12,17 @@ class Field : public Core::Grid
 	int threshold;
 	FieldPiece piece;
 	Polyomino polyomino;
-	int fallCount, fallSpeed;
+	int FallCount, FallSpeed;
 	int polyTotal, scoreTotal;
 
 	public:
 	Field();
-	void PieceLeft();
-	void PieceRight();
-	void PieceRotate();
+	void PieceMoveLeft();
+	void PieceMoveRight();
+	void PieceMoveDown();
+	void PieceRotateLeft();
+	void PieceRotateRight();
+	void PieceDropDown();
 	void Update();
 
 	private:

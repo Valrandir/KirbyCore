@@ -15,12 +15,12 @@ void DebugInput::Read(unsigned int ModelTick)
 	if(GetAsyncKeyState(VK_DOWN)) bitFlag |= CmdMoveDown;
 	if(GetAsyncKeyState(VK_LEFT)) bitFlag |= CmdMoveLeft;
 	if(GetAsyncKeyState(VK_RIGHT)) bitFlag |= CmdMoveRight;
-	if(GetAsyncKeyState('B')) bitFlag |= CmdActionB;
-	if(GetAsyncKeyState('A')) bitFlag |= CmdActionA;
-	if(GetAsyncKeyState('Y')) bitFlag |= CmdActionY;
-	if(GetAsyncKeyState('X')) bitFlag |= CmdActionX;
-	if(GetAsyncKeyState('L')) bitFlag |= CmdActionL;
-	if(GetAsyncKeyState('R')) bitFlag |= CmdActionR;
+	if(GetAsyncKeyState('D')) bitFlag |= CmdActionB;
+	if(GetAsyncKeyState('F')) bitFlag |= CmdActionA;
+	if(GetAsyncKeyState('E')) bitFlag |= CmdActionY;
+	if(GetAsyncKeyState('R')) bitFlag |= CmdActionX;
+	if(GetAsyncKeyState('Q')) bitFlag |= CmdActionL;
+	if(GetAsyncKeyState('W')) bitFlag |= CmdActionR;
 }
 
 unsigned int DebugInput::Peek(CommandEnum command)

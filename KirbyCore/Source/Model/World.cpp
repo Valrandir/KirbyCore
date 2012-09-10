@@ -16,24 +16,6 @@ World::~World()
 	}
 }
 
-void World::CmdMoveLeft()
-{
-	if(state == InGame)
-		pField->PieceLeft();
-}
-
-void World::CmdMoveRight()
-{
-	if(state == InGame)
-		pField->PieceRight();
-}
-
-void World::Update()
-{
-	pField->Update();
-	score = pField->GetScoreTotal();
-}
-
 Field const * World::GetField() const
 {
 	return pField;
@@ -42,4 +24,46 @@ Field const * World::GetField() const
 int World::GetScore() const
 {
 	return score;
+}
+
+void World::Update()
+{
+	pField->Update();
+	score = pField->GetScoreTotal();
+}
+
+void World::CmdMoveLeft()
+{
+	if(state == InGame)
+		pField->PieceMoveLeft();
+}
+
+void World::CmdMoveRight()
+{
+	if(state == InGame)
+		pField->PieceMoveRight();
+}
+
+void World::CmdMoveDown()
+{
+	if(state == InGame)
+		pField->PieceMoveDown();
+}
+
+void World::CmdActionB()
+{
+	if(state == InGame)
+		pField->PieceRotateLeft();
+}
+
+void World::CmdActionA()
+{
+	if(state == InGame)
+		pField->PieceRotateRight();
+}
+
+void World::CmdActionX()
+{
+	if(state == InGame)
+		pField->PieceDropDown();
 }

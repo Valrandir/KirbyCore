@@ -2,25 +2,78 @@
 #include "FieldPiece.h"
 #include "BlockMkr.h"
 
-FieldPiece::FieldPiece() : end(vFieldItem + nFieldItem)
-{}
+FieldPiece::FieldPiece() : end(vFieldItem + nFieldItem) {}
 
-void FieldPiece::HMove(int x)
+void FieldPiece::Translate(int x, int y)
 {
 	FieldItem* p = vFieldItem;
-	while(p < end) (p++)->x += x;
+	while(p < end)
+	{
+		p->x += x;
+		p->y += y;
+		++p;
+	}
 }
 
-void FieldPiece::VMove(int y)
+void FieldPiece::RotateZero(int direction)
 {
+	int xSwap;
 	FieldItem* p = vFieldItem;
-	while(p < end) (p++)->y += y;
+
+	while(p < end)
+	{
+		xSwap = p->x;
+		p->x = p->y;
+		p->y = xSwap;
+
+		if(direction > 0)
+			p->x = -p->x;
+		else
+			p->y = -p->y;
+
+		++p;
+	}
 }
 
-void FieldPiece::MoveLeft(){HMove(-1);}
-void FieldPiece::MoveRight(){HMove(1);}
-void FieldPiece::Fall(){VMove(1);}
-void FieldPiece::FlyUp(){VMove(-1);}
+void FieldPiece::Rotate(int direction)
+{
+	int x = vFieldItem->x;
+	int y = vFieldItem->y;
+
+	Translate(-x, -y);
+	RotateZero(direction);
+	Translate(x, y);
+}
+
+void FieldPiece::MoveLeft()
+{
+	Translate(-1, 0);
+}
+
+void FieldPiece::MoveRight()
+{
+	Translate(1, 0);
+}
+
+void FieldPiece::MoveUp()
+{
+	Translate(0, -1);
+}
+
+void FieldPiece::MoveDown()
+{
+	Translate(0, 1);
+}
+
+void FieldPiece::RotateLeft()
+{
+	Rotate(-1);
+}
+
+void FieldPiece::RotateRight()
+{
+	Rotate(1);
+}
 
 void FieldPiece::Reset(int fieldSquareWidth)
 {

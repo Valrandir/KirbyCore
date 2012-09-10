@@ -4,49 +4,69 @@
 
 Field::Field() : polyTotal(0), scoreTotal(0)
 {
-	squareWidth = 8;
-	squareHeight = 8;
+	squareWidth = 6;
+	squareHeight = 12;
 	threshold = 4;
 
-	fallCount = 0;
-	fallSpeed = 30;
+	FallCount = 0;
+	FallSpeed = 5;
 
 	Grid::Create(squareWidth, squareHeight);
 	piece.Reset(squareWidth);
 }
 
-void Field::PieceLeft()
+void Field::PieceMoveLeft()
 {
 	piece.MoveLeft();
 	if(FindImpact())
 		piece.MoveRight();
 }
 
-void Field::PieceRight()
+void Field::PieceMoveRight()
 {
 	piece.MoveRight();
 	if(FindImpact())
 		piece.MoveLeft();
 }
 
-void Field::PieceRotate()
+void Field::PieceMoveDown()
 {
+	piece.MoveDown();
+	if(FindImpact())
+	{
+		piece.MoveUp();
+		Cycle();
+	}
+}
+
+void Field::PieceRotateLeft()
+{
+	piece.RotateLeft();
+	if(FindImpact())
+		piece.RotateRight();
+}
+
+void Field::PieceRotateRight()
+{
+	piece.RotateRight();
+	if(FindImpact())
+		piece.RotateLeft();
+}
+
+void Field::PieceDropDown()
+{
+	do piece.MoveDown();
+	while(!FindImpact());
+	piece.MoveUp();
+	Cycle();
 }
 
 void Field::Update()
 {
-	++fallCount;
-	if(fallCount < fallSpeed)
-		return;
-
-	fallCount = 0;
-
-	piece.Fall();
-
-	if(FindImpact())
+	if(++FallCount >= FallSpeed)
 	{
-		piece.FlyUp();
-		Cycle();
+		FallCount = 0;
+		PieceMoveDown();
 	}
 }
 

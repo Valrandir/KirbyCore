@@ -8,8 +8,8 @@ void DebugRender::Create()
 
 void DebugRender::Activate()
 {
-	int width = 256;
-	int height = 256;
+	int width = 192;
+	int height = 384;
 	pWindowGDI = new WindowGDI(TEXT("Kirby Core - Debug Renderer"), width, height);
 }
 

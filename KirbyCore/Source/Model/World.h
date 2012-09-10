@@ -17,10 +17,14 @@ class World
 	World();
 	~World();
 
-	void CmdMoveLeft();
-	void CmdMoveRight();
-	void Update();
-
 	Field const * GetField() const;
 	int GetScore() const;
+
+	void Update();
+	void CmdMoveLeft();
+	void CmdMoveRight();
+	void CmdMoveDown();
+	void CmdActionB();
+	void CmdActionA();
+	void CmdActionX();
 };

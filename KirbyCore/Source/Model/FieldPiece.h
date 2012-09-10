@@ -11,14 +11,17 @@ class FieldPiece
 	FieldPiece();
 
 	private:
-	void HMove(int x);
-	void VMove(int y);
+	void Translate(int x, int y);
+	void RotateZero(int direction);
+	void Rotate(int direction);
 
 	public:
 	void MoveLeft();
 	void MoveRight();
-	void Fall();
-	void FlyUp();
+	void MoveUp();
+	void MoveDown();
+	void RotateLeft();
+	void RotateRight();
 	void Reset(int fieldSquareWidth);
 	void GetItems(FieldItem const **begin, FieldItem const **end, int* count) const;
 };
