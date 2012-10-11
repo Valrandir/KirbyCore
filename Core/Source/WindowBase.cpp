@@ -7,7 +7,7 @@ WindowBase::~WindowBase()
 	PostQuitMessage(0);
 }
 
-WindowBase* WindowBase::Create(CORESTR title, int clientWidth, int clientHeight)
+WindowBase* WindowBase::Create(CORECSTR title, int clientWidth, int clientHeight)
 {
 	return new WindowBaseImpl(title, clientWidth, clientHeight);
 }

@@ -1,12 +1,14 @@
+#include <stdio.h>
+#include <stdarg.h>
+#include <tchar.h>
 #include "../Include/String.h"
-#include "../Include/StringImpl.h"
+
 using namespace Core;
 
-String::~String()
+void String::Format(CORESTR buffer, int bufferSize, CORECSTR format, ...)
 {
-}
-
-String* String::Create(CORESTR ptr)
-{
-	return new StringImpl(ptr);
+	va_list ap;
+	va_start(ap, format);
+	_vsntprintf_s(buffer, bufferSize, _TRUNCATE, format, ap);
+	va_end(ap);
 }

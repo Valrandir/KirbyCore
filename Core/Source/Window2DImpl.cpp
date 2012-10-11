@@ -43,7 +43,7 @@ LRESULT Window2DImpl::WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPar
 	return 0;
 }
 
-Window2DImpl::Window2DImpl(CORESTR title, int clientWidth, int clientHeight) : WindowBaseImpl(title, clientWidth, clientHeight)
+Window2DImpl::Window2DImpl(CORECSTR title, int clientWidth, int clientHeight) : WindowBaseImpl(title, clientWidth, clientHeight)
 {
 	SetupBackBuffer();
 }
@@ -93,9 +93,9 @@ void Window2DImpl::DrawLine(int x, int y, int x2, int y2) const
 	LineTo(hBufferDC, x2, y2);
 }
 
-/*
-void Window2DImpl::DrawText(CORESTR text, int len, int x, int y) const
+#include <tchar.h>
+void Window2DImpl::DrawString(CORECSTR text, int x, int y) const
 {
+	int len = _tcslen(text);
 	TextOut(hBufferDC, x, y, text, len);
 }
-*/

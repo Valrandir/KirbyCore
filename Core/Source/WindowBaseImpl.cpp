@@ -52,7 +52,7 @@ LRESULT WindowBaseImpl::WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lP
 	return 0;
 }
 
-WindowBaseImpl::WindowBaseImpl(CORESTR title, int clientWidth, int clientHeight) : width(clientWidth), height(clientHeight), clientWidth(clientWidth), clientHeight(clientHeight)
+WindowBaseImpl::WindowBaseImpl(CORECSTR title, int clientWidth, int clientHeight) : width(clientWidth), height(clientHeight), clientWidth(clientWidth), clientHeight(clientHeight)
 {
 	HINSTANCE hInstance;
 	WNDCLASSEX wc;

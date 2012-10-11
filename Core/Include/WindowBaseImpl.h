@@ -20,7 +20,7 @@ class WindowBaseImpl : public WindowBase
 	virtual LRESULT WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 	public:
-	WindowBaseImpl(CORESTR title, int clientWidth, int clientHeight);
+	WindowBaseImpl(CORECSTR title, int clientWidth, int clientHeight);
 	~WindowBaseImpl();
 	void Show() const;
 	bool Update() const;

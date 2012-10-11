@@ -12,6 +12,6 @@ namespace Core
 		virtual void GetSize(int& width, int& height) const = 0;
 		virtual void GetClientSize(int& clientWidth, int& clientHeight) const = 0;
 
-		static WindowBase* Create(CORESTR title, int clientWidth, int clientHeight);
+		static WindowBase* Create(CORECSTR title, int clientWidth, int clientHeight);
 	};
 }

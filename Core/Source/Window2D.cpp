@@ -6,7 +6,7 @@ Window2D::~Window2D()
 {
 }
 
-Window2D* Window2D::Create(CORESTR title, int clientWidth, int clientHeight)
+Window2D* Window2D::Create(CORECSTR title, int clientWidth, int clientHeight)
 {
 	return new Window2DImpl(title, clientWidth, clientHeight);
 }

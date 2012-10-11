@@ -3,19 +3,20 @@
 namespace Core
 {
 	#ifdef UNICODE
-		//typedef wchar_t CORECHAR;
-		typedef wchar_t const * CORESTR;
+		#define CORETEXT(quote)L##quote
+		typedef wchar_t CORECHAR;
+		typedef wchar_t const* CORECSTR;
+		typedef wchar_t* CORESTR;
 	#else
-		typedef char const * CORESTR;
+		#define CORETEXT(quote)quote
+		typedef char CORECHAR;
+		typedef char const* CORECSTR;
+		typedef char* CORESTR;
 	#endif
 
 	class String
 	{
 		public:
-		virtual ~String() = 0;
-		virtual int GetChrCount() const = 0;
-		virtual int GetByteSize() const = 0;
-
-		static String* Create(CORESTR ptr);
+		static void Format(CORESTR buffer, int bufferSize, CORECSTR format, ...);
 	};
 }

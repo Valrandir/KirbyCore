@@ -17,7 +17,7 @@ class Window2DImpl : public Window2D, private WindowBaseImpl
 	LRESULT WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 	public:
-	Window2DImpl(CORESTR title, int clientWidth, int clientHeight);
+	Window2DImpl(CORECSTR title, int clientWidth, int clientHeight);
 	~Window2DImpl();
 
 	//WindowBase
@@ -30,5 +30,5 @@ class Window2DImpl : public Window2D, private WindowBaseImpl
 	void Clear() const;
 	void DrawRect(int x, int y, int width, int height, unsigned int color) const;
 	void DrawLine(int x, int y, int x2, int y2) const;
-	//void DrawText(CORESTR text, int len, int x, int y) const;
+	void DrawString(CORECSTR text, int x, int y) const;
 };

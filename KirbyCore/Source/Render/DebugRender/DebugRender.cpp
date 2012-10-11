@@ -36,37 +36,14 @@ void DebugRender::RenderWorld(World const * pWorld)
 	RenderScore(pWorld->GetScore());
 }
 
-#include <tchar.h>
 void DebugRender::RenderScore(int score)
 {
 	int len;
-	TCHAR dest[128];
+	Core::CORECHAR dest[128];
 
-	len = _stprintf_s(dest, 128, TEXT("Score: %d"), score);
-	//TODO
-	//pWindow2D->Text(dest, len, 0, 0);
+	Core::String::Format(dest, 128, CORETEXT("Score: %d"), score);
+	pWindow2D->DrawString(dest, 0, 0);
 }
-
-/*
-void CALL HGE_Impl::System_Log(const char *szFormat, ...)
-{
-	FILE *hf = NULL;
-	va_list ap;
-	
-	if(!szLogFile[0]) return;
-
-	hf = fopen(szLogFile, "a");
-	if(!hf) return;
-
-	va_start(ap, szFormat);
-	vfprintf(hf, szFormat, ap);
-	va_end(ap);
-
-	fprintf(hf, "\n");
-
-	fclose(hf);
-}
-*/
 
 void DebugRender::RenderField(Field const * pField)
 {
