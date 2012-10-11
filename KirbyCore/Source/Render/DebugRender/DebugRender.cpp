@@ -6,7 +6,7 @@ void DebugRender::Activate()
 {
 	int width = 192;
 	int height = 384;
-	pWindow2D = Core::Window2D::Create(Core::CORESTR("Kirby Core - Debug Renderer"), width, height);
+	pWindow2D = Core::Window2D::Create(CORETEXT("Kirby Core - Debug Renderer"), width, height);
 	pWindow2D->Show();
 }
 
@@ -38,7 +38,6 @@ void DebugRender::RenderWorld(World const * pWorld)
 
 void DebugRender::RenderScore(int score)
 {
-	int len;
 	Core::CORECHAR dest[128];
 
 	Core::String::Format(dest, 128, CORETEXT("Score: %d"), score);
