@@ -17,6 +17,7 @@ void KirbyCore::Initialise()
 	_pWorld = new World();
 	_pIInput = IInput::Create();
 	_pIRender = IRender::Create();
+	_pIRender->Create();
 	_pIRender->Activate();
 }
 

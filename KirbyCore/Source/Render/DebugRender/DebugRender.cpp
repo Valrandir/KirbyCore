@@ -2,31 +2,28 @@
 #include "../../Model/Field.h"
 #include "DebugRender.h"
 
-void DebugRender::Create()
-{
-}
-
 void DebugRender::Activate()
 {
 	int width = 192;
 	int height = 384;
-	pWindowGDI = new WindowGDI(TEXT("Kirby Core - Debug Renderer"), width, height);
+	pWindow2D = Core::Window2D::Create(Core::CORESTR("Kirby Core - Debug Renderer"), width, height);
+	pWindow2D->Show();
 }
 
 unsigned int DebugRender::Refresh()
 {
-	if(pWindowGDI)
-		return pWindowGDI->Refresh();
+	if(pWindow2D)
+		return pWindow2D->Update();
 
 	return 0;
 }
 
 DebugRender::~DebugRender()
 {
-	if(pWindowGDI)
+	if(pWindow2D)
 	{
-		delete pWindowGDI;
-		pWindowGDI = NULL;
+		delete pWindow2D;
+		pWindow2D = NULL;
 	}
 }
 
@@ -34,7 +31,7 @@ void DebugRender::RenderWorld(World const * pWorld)
 {
 	Field const * pField = pWorld->GetField();
 
-	pWindowGDI->ClearBackBuffer();
+	pWindow2D->Clear();
 	RenderField(pField);
 	RenderScore(pWorld->GetScore());
 }
@@ -46,7 +43,8 @@ void DebugRender::RenderScore(int score)
 	TCHAR dest[128];
 
 	len = _stprintf_s(dest, 128, TEXT("Score: %d"), score);
-	pWindowGDI->Text(dest, len, 0, 0);
+	//TODO
+	//pWindow2D->Text(dest, len, 0, 0);
 }
 
 void DebugRender::RenderField(Field const * pField)
@@ -54,10 +52,14 @@ void DebugRender::RenderField(Field const * pField)
 	int const * gridPtr;
 	int fieldSizeX = pField->GetSizeX();
 	int fieldSizeY = pField->GetSizeY();
-	int squarePixelSizeX = pWindowGDI->GetWidth() / fieldSizeX;
-	int squarePixelSizeY = pWindowGDI->GetHeight() / fieldSizeY;
-	int j, i;
-	int x, y, color;
+	int squarePixelSizeX;
+	int squarePixelSizeY;
+	int j, i, x, y;
+	unsigned int color;
+
+	pWindow2D->GetClientSize(x, y);
+	squarePixelSizeX = x / fieldSizeX;
+	squarePixelSizeY = y / fieldSizeY;
 
 	pField->GetReadPtr(&gridPtr, 0, 0);
 
@@ -67,7 +69,7 @@ void DebugRender::RenderField(Field const * pField)
 		{
 			color = *gridPtr;
 			if(color)
-				pWindowGDI->FillRect(x, y, squarePixelSizeX, squarePixelSizeY, color);
+				pWindow2D->DrawRect(x, y, squarePixelSizeX, squarePixelSizeY, color);
 			x += squarePixelSizeX;
 			++gridPtr;
 		}
@@ -76,7 +78,7 @@ void DebugRender::RenderField(Field const * pField)
 
 	x = fieldSizeX * squarePixelSizeX;
 	y = fieldSizeY * squarePixelSizeY;
-	pWindowGDI->Line(0, y, x + 1, y);
+	pWindow2D->DrawLine(0, y, x + 1, y);
 
 	FieldItem const * vItem;
 	int nItem;
@@ -90,7 +92,7 @@ void DebugRender::RenderField(Field const * pField)
 		{
 			x *= squarePixelSizeX;
 			y *= squarePixelSizeY;
-			pWindowGDI->FillRect(x, y, squarePixelSizeX, squarePixelSizeY, color);
+			pWindow2D->DrawRect(x, y, squarePixelSizeX, squarePixelSizeY, color);
 		}
 	}
 }

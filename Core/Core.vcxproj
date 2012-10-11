@@ -16,11 +16,17 @@
     <ClInclude Include="Include\HighPerfTick.h" />
     <ClInclude Include="Include\Random.h" />
     <ClInclude Include="Include\StackTrace.h" />
+    <ClInclude Include="Include\String.h" />
     <ClInclude Include="Include\TickRate.h" />
     <ClInclude Include="Include\Vector2.h" />
+    <ClInclude Include="Include\Window2D.h" />
+    <ClInclude Include="Include\Window2DImpl.h" />
+    <ClInclude Include="Include\WindowBase.h" />
+    <ClInclude Include="Include\WindowBaseImpl.h" />
     <ClInclude Include="Include\WindowGDI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\AppMain.cpp" />
     <ClCompile Include="Source\Core.cpp" />
     <ClCompile Include="Source\Grid.cpp" />
     <ClCompile Include="Source\HighPerfTick.cpp" />
@@ -28,6 +34,10 @@
     <ClCompile Include="Source\StackTrace.cpp" />
     <ClCompile Include="Source\TickRate.cpp" />
     <ClCompile Include="Source\Vector2.cpp" />
+    <ClCompile Include="Source\Window2D.cpp" />
+    <ClCompile Include="Source\Window2DImpl.cpp" />
+    <ClCompile Include="Source\WindowBase.cpp" />
+    <ClCompile Include="Source\WindowBaseImpl.cpp" />
     <ClCompile Include="Source\WindowGDI.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -58,7 +68,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath);$(ProjectDir)Include;</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(IncludePath);$(ProjectDir)Include;</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

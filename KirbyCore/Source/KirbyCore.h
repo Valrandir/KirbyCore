@@ -1,6 +1,5 @@
 #pragma once
 #include <Core.h>
-#include "KirbyCore.h"
 #include "Model/World.h"
 #include "Input/IInput.h"
 #include "Render/IRender.h"

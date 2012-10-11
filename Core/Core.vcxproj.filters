@@ -33,6 +33,21 @@
     <ClInclude Include="Include\Grid.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="Include\String.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Window2D.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Window2DImpl.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\WindowBase.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\WindowBaseImpl.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\StackTrace.cpp">
@@ -57,6 +72,21 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Grid.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AppMain.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Window2D.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Window2DImpl.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WindowBase.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WindowBaseImpl.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
