@@ -17,6 +17,7 @@ namespace Core
 	class String
 	{
 		public:
+		static int GetLength(CORECSTR text);
 		static void Format(CORESTR buffer, int bufferSize, CORECSTR format, ...);
 	};
 }

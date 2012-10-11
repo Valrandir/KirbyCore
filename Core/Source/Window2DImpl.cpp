@@ -93,9 +93,8 @@ void Window2DImpl::DrawLine(int x, int y, int x2, int y2) const
 	LineTo(hBufferDC, x2, y2);
 }
 
-#include <tchar.h>
 void Window2DImpl::DrawString(CORECSTR text, int x, int y) const
 {
-	int len = _tcslen(text);
+	int len = String::GetLength(text);
 	TextOut(hBufferDC, x, y, text, len);
 }

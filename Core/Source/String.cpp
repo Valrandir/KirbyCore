@@ -5,6 +5,11 @@
 
 using namespace Core;
 
+int String::GetLength(CORECSTR text)
+{
+	return _tcslen(text);
+}
+
 void String::Format(CORESTR buffer, int bufferSize, CORECSTR format, ...)
 {
 	va_list ap;
