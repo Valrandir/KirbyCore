@@ -45,6 +45,9 @@
     <ClInclude Include="Include\WindowBaseImpl.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="Include\StringImpl.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\StackTrace.cpp">
@@ -81,6 +84,12 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\WindowBaseImpl.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\String.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StringImpl.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

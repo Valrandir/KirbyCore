@@ -47,6 +47,27 @@ void DebugRender::RenderScore(int score)
 	//pWindow2D->Text(dest, len, 0, 0);
 }
 
+/*
+void CALL HGE_Impl::System_Log(const char *szFormat, ...)
+{
+	FILE *hf = NULL;
+	va_list ap;
+	
+	if(!szLogFile[0]) return;
+
+	hf = fopen(szLogFile, "a");
+	if(!hf) return;
+
+	va_start(ap, szFormat);
+	vfprintf(hf, szFormat, ap);
+	va_end(ap);
+
+	fprintf(hf, "\n");
+
+	fclose(hf);
+}
+*/
+
 void DebugRender::RenderField(Field const * pField)
 {
 	int const * gridPtr;

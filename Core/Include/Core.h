@@ -12,4 +12,3 @@
 #include "StackTrace.h"
 #include "TickRate.h"
 #include "Vector2.h"
-#include "WindowGDI.h"

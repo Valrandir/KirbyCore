@@ -17,6 +17,7 @@
     <ClInclude Include="Include\Random.h" />
     <ClInclude Include="Include\StackTrace.h" />
     <ClInclude Include="Include\String.h" />
+    <ClInclude Include="Include\StringImpl.h" />
     <ClInclude Include="Include\TickRate.h" />
     <ClInclude Include="Include\Vector2.h" />
     <ClInclude Include="Include\Window2D.h" />
@@ -31,6 +32,8 @@
     <ClCompile Include="Source\HighPerfTick.cpp" />
     <ClCompile Include="Source\Random.cpp" />
     <ClCompile Include="Source\StackTrace.cpp" />
+    <ClCompile Include="Source\String.cpp" />
+    <ClCompile Include="Source\StringImpl.cpp" />
     <ClCompile Include="Source\TickRate.cpp" />
     <ClCompile Include="Source\Vector2.cpp" />
     <ClCompile Include="Source\Window2D.cpp" />
