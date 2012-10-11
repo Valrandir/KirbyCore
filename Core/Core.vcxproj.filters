@@ -9,9 +9,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\WindowGDI.h">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Core.h">
       <Filter>Include</Filter>
     </ClInclude>
@@ -54,9 +51,6 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\TickRate.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\WindowGDI.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core.cpp">

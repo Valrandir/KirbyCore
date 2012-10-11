@@ -23,7 +23,6 @@
     <ClInclude Include="Include\Window2DImpl.h" />
     <ClInclude Include="Include\WindowBase.h" />
     <ClInclude Include="Include\WindowBaseImpl.h" />
-    <ClInclude Include="Include\WindowGDI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\AppMain.cpp" />
@@ -38,7 +37,6 @@
     <ClCompile Include="Source\Window2DImpl.cpp" />
     <ClCompile Include="Source\WindowBase.cpp" />
     <ClCompile Include="Source\WindowBaseImpl.cpp" />
-    <ClCompile Include="Source\WindowGDI.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4D47932B-5391-4314-B42B-070D7E8B69BE}</ProjectGuid>
