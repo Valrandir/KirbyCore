@@ -11,17 +11,11 @@ class FieldPiece
 	FieldPiece();
 
 	private:
-	void Translate(int x, int y);
-	void RotateZero(int direction);
-	void Rotate(int direction);
+	void RotateZero(bool clockwise);
 
 	public:
-	void MoveLeft();
-	void MoveRight();
-	void MoveUp();
-	void MoveDown();
-	void RotateLeft();
-	void RotateRight();
+	void Offset(int x, int y);
+	void Rotate(bool clockwise);
 	void Reset(int fieldSquareWidth);
 	void GetItems(FieldItem const **begin, FieldItem const **end, int* count) const;
 };

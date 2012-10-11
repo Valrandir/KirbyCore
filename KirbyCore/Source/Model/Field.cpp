@@ -17,47 +17,47 @@ Field::Field() : polyTotal(0), scoreTotal(0)
 
 void Field::PieceMoveLeft()
 {
-	piece.MoveLeft();
+	piece.Offset(-1, 0);
 	if(FindImpact())
-		piece.MoveRight();
+		piece.Offset(1, 0);
 }
 
 void Field::PieceMoveRight()
 {
-	piece.MoveRight();
+	piece.Offset(1, 0);
 	if(FindImpact())
-		piece.MoveLeft();
+		piece.Offset(-1, 0);
 }
 
 void Field::PieceMoveDown()
 {
-	piece.MoveDown();
+	piece.Offset(0, 1);
 	if(FindImpact())
 	{
-		piece.MoveUp();
+		piece.Offset(0, -1);
 		Cycle();
 	}
 }
 
 void Field::PieceRotateLeft()
 {
-	piece.RotateLeft();
+	piece.Rotate(false);
 	if(FindImpact())
-		piece.RotateRight();
+		piece.Rotate(true);
 }
 
 void Field::PieceRotateRight()
 {
-	piece.RotateRight();
+	piece.Rotate(true);
 	if(FindImpact())
-		piece.RotateLeft();
+		piece.Rotate(false);
 }
 
 void Field::PieceDropDown()
 {
-	do piece.MoveDown();
+	do piece.Offset(0, 1);
 	while(!FindImpact());
-	piece.MoveUp();
+	piece.Offset(0, -1);
 	Cycle();
 }
 

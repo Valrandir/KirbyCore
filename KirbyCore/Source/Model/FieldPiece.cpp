@@ -4,7 +4,25 @@
 
 FieldPiece::FieldPiece() : end(vFieldItem + nFieldItem) {}
 
-void FieldPiece::Translate(int x, int y)
+void FieldPiece::RotateZero(bool clockwise)
+{
+	int swap;
+	FieldItem* p = vFieldItem;
+
+	while(p < end)
+	{
+		swap = p->x;
+		p->x = p->y;
+		p->y = swap;
+
+		int& pt = clockwise ? p->x : p->y;
+		pt = -pt;
+		
+		++p;
+	}
+}
+
+void FieldPiece::Offset(int x, int y)
 {
 	FieldItem* p = vFieldItem;
 	while(p < end)
@@ -15,64 +33,14 @@ void FieldPiece::Translate(int x, int y)
 	}
 }
 
-void FieldPiece::RotateZero(int direction)
-{
-	int xSwap;
-	FieldItem* p = vFieldItem;
-
-	while(p < end)
-	{
-		xSwap = p->x;
-		p->x = p->y;
-		p->y = xSwap;
-
-		if(direction > 0)
-			p->x = -p->x;
-		else
-			p->y = -p->y;
-
-		++p;
-	}
-}
-
-void FieldPiece::Rotate(int direction)
+void FieldPiece::Rotate(bool clockwise)
 {
 	int x = vFieldItem->x;
 	int y = vFieldItem->y;
 
-	Translate(-x, -y);
-	RotateZero(direction);
-	Translate(x, y);
-}
-
-void FieldPiece::MoveLeft()
-{
-	Translate(-1, 0);
-}
-
-void FieldPiece::MoveRight()
-{
-	Translate(1, 0);
-}
-
-void FieldPiece::MoveUp()
-{
-	Translate(0, -1);
-}
-
-void FieldPiece::MoveDown()
-{
-	Translate(0, 1);
-}
-
-void FieldPiece::RotateLeft()
-{
-	Rotate(-1);
-}
-
-void FieldPiece::RotateRight()
-{
-	Rotate(1);
+	Offset(-x, -y);
+	RotateZero(clockwise);
+	Offset(x, y);
 }
 
 void FieldPiece::Reset(int fieldSquareWidth)
