@@ -5,7 +5,6 @@
 
 class Field : public Core::Grid
 {
-	enum ImpactTypeEnum{None, Horizontal, Vertical};
 	static const int DeletedFlag = -1;
 	int squareWidth;
 	int squareHeight;
