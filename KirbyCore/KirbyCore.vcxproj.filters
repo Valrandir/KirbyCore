@@ -95,6 +95,9 @@
     <ClCompile Include="Source\Input\IInput.cpp">
       <Filter>Source\Input</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Model\PointSet.cpp">
+      <Filter>Source\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Notes.txt" />

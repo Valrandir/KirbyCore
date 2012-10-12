@@ -17,7 +17,7 @@ void FieldPiece::RotateZero(bool clockwise)
 
 		int& pt = clockwise ? p->x : p->y;
 		pt = -pt;
-		
+
 		++p;
 	}
 }

@@ -32,6 +32,7 @@
     <ClCompile Include="Source\Model\Field.cpp" />
     <ClCompile Include="Source\Model\FieldItem.cpp" />
     <ClCompile Include="Source\Model\FieldPiece.cpp" />
+    <ClCompile Include="Source\Model\PointSet.cpp" />
     <ClCompile Include="Source\Model\Polyomino\Polyomino.cpp" />
     <ClCompile Include="Source\Model\World.cpp" />
     <ClCompile Include="Source\Render\DebugRender\DebugRender.cpp" />
