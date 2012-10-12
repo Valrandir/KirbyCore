@@ -2,74 +2,6 @@
 #include "Field.h"
 #include "BlockMkr.h"
 
-Field::Field() : polyTotal(0), scoreTotal(0)
-{
-	squareWidth = 6;
-	squareHeight = 12;
-	threshold = 4;
-
-	FallCount = 0;
-	FallSpeed = 5;
-
-	Grid::Create(squareWidth, squareHeight);
-	piece.Reset(squareWidth);
-}
-
-void Field::PieceMoveLeft()
-{
-	piece.Offset(-1, 0);
-	if(FindImpact())
-		piece.Offset(1, 0);
-}
-
-void Field::PieceMoveRight()
-{
-	piece.Offset(1, 0);
-	if(FindImpact())
-		piece.Offset(-1, 0);
-}
-
-void Field::PieceMoveDown()
-{
-	piece.Offset(0, 1);
-	if(FindImpact())
-	{
-		piece.Offset(0, -1);
-		Cycle();
-	}
-}
-
-void Field::PieceRotateLeft()
-{
-	piece.Rotate(false);
-	if(FindImpact())
-		piece.Rotate(true);
-}
-
-void Field::PieceRotateRight()
-{
-	piece.Rotate(true);
-	if(FindImpact())
-		piece.Rotate(false);
-}
-
-void Field::PieceDropDown()
-{
-	do piece.Offset(0, 1);
-	while(!FindImpact());
-	piece.Offset(0, -1);
-	Cycle();
-}
-
-void Field::Update()
-{
-	if(++FallCount >= FallSpeed)
-	{
-		FallCount = 0;
-		PieceMoveDown();
-	}
-}
-
 void Field::RandomFill()
 {
 	int* ptr;
@@ -78,6 +10,22 @@ void Field::RandomFill()
 	GetWritePtr(&ptr, &end, 0);
 	for(; ptr < end; ++ptr)
 		*ptr = BlockMkr::GetRandomBlock();
+}
+
+bool Field::PieceRotate(bool clockwise)
+{
+	piece.Rotate(clockwise);
+	if(!FindImpact()) return true;
+
+	piece.Offset(1, 0);
+	if(!FindImpact()) return true;
+
+	piece.Offset(-2, 0);
+	if(!FindImpact()) return true;
+
+	piece.Offset(1, 0);
+	piece.Rotate(!clockwise);
+	return false;
 }
 
 void Field::Cycle()
@@ -153,6 +101,70 @@ void Field::Collapse()
 				for(i = y; i >= 0; --i)
 					Set(x, i, Get(x, i - 1));
 		}
+}
+
+Field::Field() : polyTotal(0), scoreTotal(0)
+{
+	squareWidth = 6;
+	squareHeight = 12;
+	threshold = 4;
+
+	FallCount = 0;
+	FallSpeed = 5;
+
+	Grid::Create(squareWidth, squareHeight);
+	piece.Reset(squareWidth);
+}
+
+void Field::PieceMoveLeft()
+{
+	piece.Offset(-1, 0);
+	if(FindImpact())
+		piece.Offset(1, 0);
+}
+
+void Field::PieceMoveRight()
+{
+	piece.Offset(1, 0);
+	if(FindImpact())
+		piece.Offset(-1, 0);
+}
+
+void Field::PieceMoveDown()
+{
+	piece.Offset(0, 1);
+	if(FindImpact())
+	{
+		piece.Offset(0, -1);
+		Cycle();
+	}
+}
+
+void Field::PieceRotateLeft()
+{
+	PieceRotate(false);
+}
+
+void Field::PieceRotateRight()
+{
+	PieceRotate(true);
+}
+
+void Field::PieceDropDown()
+{
+	do piece.Offset(0, 1);
+	while(!FindImpact());
+	piece.Offset(0, -1);
+	Cycle();
+}
+
+void Field::Update()
+{
+	if(++FallCount >= FallSpeed)
+	{
+		FallCount = 0;
+		PieceMoveDown();
+	}
 }
 
 void Field::GetFieldItems(FieldItem const **vItem, int* nItem) const

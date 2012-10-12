@@ -14,6 +14,14 @@ class Field : public Core::Grid
 	int FallCount, FallSpeed;
 	int polyTotal, scoreTotal;
 
+	void RandomFill();
+	bool PieceRotate(bool clockwise);
+	void Cycle();
+	bool FindImpact();
+	void SetPiece(FieldPiece const* piece);
+	int DestroyItems(Core::Grid const* outGrid, int threshold);
+	void Collapse();
+
 	public:
 	Field();
 	void PieceMoveLeft();
@@ -23,16 +31,6 @@ class Field : public Core::Grid
 	void PieceRotateRight();
 	void PieceDropDown();
 	void Update();
-
-	private:
-	void RandomFill();
-	void Cycle();
-	bool FindImpact();
-	void SetPiece(FieldPiece const* piece);
-	int DestroyItems(Core::Grid const* outGrid, int threshold);
-	void Collapse();
-
-	public:
 	void GetFieldItems(FieldItem const **vItem, int* nItem) const;
 	int GetPolyTotal() const;
 	int GetScoreTotal() const;
