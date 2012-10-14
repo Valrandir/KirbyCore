@@ -24,9 +24,6 @@
     <ClInclude Include="Include\TickRate.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Vector2.h">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Grid.h">
       <Filter>Include</Filter>
     </ClInclude>
@@ -43,6 +40,15 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="Include\WindowBaseImpl.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Vector2.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\VectorImpl.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Vector.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -84,6 +90,12 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\String.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\VectorImpl.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Vector.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

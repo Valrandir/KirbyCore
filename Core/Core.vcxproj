@@ -18,7 +18,9 @@
     <ClInclude Include="Include\StackTrace.h" />
     <ClInclude Include="Include\String.h" />
     <ClInclude Include="Include\TickRate.h" />
+    <ClInclude Include="Include\Vector.h" />
     <ClInclude Include="Include\Vector2.h" />
+    <ClInclude Include="Include\VectorImpl.h" />
     <ClInclude Include="Include\Window2D.h" />
     <ClInclude Include="Include\Window2DImpl.h" />
     <ClInclude Include="Include\WindowBase.h" />
@@ -33,7 +35,9 @@
     <ClCompile Include="Source\StackTrace.cpp" />
     <ClCompile Include="Source\String.cpp" />
     <ClCompile Include="Source\TickRate.cpp" />
+    <ClCompile Include="Source\Vector.cpp" />
     <ClCompile Include="Source\Vector2.cpp" />
+    <ClCompile Include="Source\VectorImpl.cpp" />
     <ClCompile Include="Source\Window2D.cpp" />
     <ClCompile Include="Source\Window2DImpl.cpp" />
     <ClCompile Include="Source\WindowBase.cpp" />
@@ -46,7 +50,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>

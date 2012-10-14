@@ -1,3 +1,5 @@
+#define nothing
+
 class PointSet
 {
 	public:
