@@ -17,3 +17,6 @@ namespace Core
 		static Vector<T>* Create();
 	};
 }
+
+//Template need definition to be available within the same compilation unit
+#include "../Source/Vector.cpp"

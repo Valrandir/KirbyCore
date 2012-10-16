@@ -21,6 +21,10 @@ v->Push(5);
 auto a = v->Begin();
 int* b = v->Begin();
 
+int z;
+for(auto it = v->Begin(); it < v->End(); ++it)
+	z = *it;
+
 		//return CoreMain();
 		return 0;
 	}

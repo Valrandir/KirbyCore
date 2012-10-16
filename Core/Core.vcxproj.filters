@@ -51,6 +51,12 @@
     <ClInclude Include="Include\Vector.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Vector.cpp">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\VectorImpl.cpp">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\StackTrace.cpp">
@@ -90,12 +96,6 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\String.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\VectorImpl.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Vector.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

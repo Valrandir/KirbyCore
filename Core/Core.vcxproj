@@ -35,9 +35,9 @@
     <ClCompile Include="Source\StackTrace.cpp" />
     <ClCompile Include="Source\String.cpp" />
     <ClCompile Include="Source\TickRate.cpp" />
-    <ClCompile Include="Source\Vector.cpp" />
+    <ClInclude Include="Source\Vector.cpp" />
     <ClCompile Include="Source\Vector2.cpp" />
-    <ClCompile Include="Source\VectorImpl.cpp" />
+    <ClInclude Include="Source\VectorImpl.cpp" />
     <ClCompile Include="Source\Window2D.cpp" />
     <ClCompile Include="Source\Window2DImpl.cpp" />
     <ClCompile Include="Source\WindowBase.cpp" />

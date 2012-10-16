@@ -27,12 +27,12 @@ template<class T> void VectorImpl<T>::Clear()
 
 template<class T> T* VectorImpl<T>::Begin()
 {
-	return &(*vec.begin());
+	return &vec.front();
 }
 
 template<class T> T* VectorImpl<T>::End()
 {
-	return &(*vec.end());
+	return &vec.back() + 1;
 }
 
 template<class T> int VectorImpl<T>::Length() const
